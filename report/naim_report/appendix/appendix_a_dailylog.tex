@@ -3,74 +3,77 @@
 
 \section*{A.1 Structured Daily Log --- Backend Team Lead}
 
-\begin{longtable}{@{}p{0.10\textwidth}p{0.20\textwidth}p{0.30\textwidth}X@{}}
+\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{0pt}
 
-\caption{Daily Activity Log --- Md. Naimuzzaman --- neoRMS --- BS-23}\\
-\toprule
+\begin{longtable}{p{0.12\textwidth}p{0.18\textwidth}p{0.30\textwidth}p{0.35\textwidth}}
 
+\caption{Daily Activity Log --- Md. Naimuzzaman --- neoRMS --- BS-23}
+\label{tab:dailylog} \\
+
+\hline
 \textbf{Day / Date} & \textbf{Focus} & \textbf{Key Activities} & \textbf{Deliverables / Evidence} \\
-\midrule
+\hline
 \endfirsthead
 
-\toprule
-
+\hline
 \textbf{Day / Date} & \textbf{Focus} & \textbf{Key Activities} & \textbf{Deliverables / Evidence} \\
-\midrule
+\hline
 \endhead
 
-Day 0 \newline 20--22 Feb &
+Day 0 (20--22 Feb) &
 Proposal \& Bootstrap &
-Team formation (7 members); project proposal defense; monorepo setup; ERD v1 (22 entities); Express + Prisma + TypeScript scaffold; Docker setup &
-GitHub repository initialized; commit \texttt{75c43f38} \\
+Team formation (7 members); neoRMS proposal defense; ERD v1 (22 entities); backend scaffold (Express + Prisma + TypeScript); Docker setup &
+GitHub repo initialized; Dockerfile; compose.yaml \\
 
-Day 1 \newline 23 Feb &
+Day 1 (23 Feb) &
 Onboarding \& Architecture &
-SRS/BRD discussion; JWT authentication bootstrap; RBAC middleware; tenant middleware; Prisma schema design &
-\texttt{auth.middleware.ts}, \texttt{tenant.middleware.ts} \\
+JWT authentication setup; RBAC middleware; tenant isolation middleware; Prisma schema v1 &
+auth.middleware.ts; tenant.middleware.ts \\
 
-Day 2 \newline 24 Feb &
-Auth \& Core APIs &
-JWT authentication APIs implemented; RBAC middleware integration; Postman collection setup &
-PR \#1--\#3 merged \\
+Day 2 (24 Feb) &
+Core APIs \& Auth &
+JWT endpoints; pagination utils; Postman setup; initial API validation &
+Auth + RBAC PRs merged; Postman collection v1 \\
 
-Day 3 \newline 25--26 Feb &
-Order Core \& WebSocket &
-Order API development; Socket.IO namespaces (\texttt{/waiter}, \texttt{/chef}, \texttt{/customer}); JWT socket authentication &
-\texttt{sockets/index.ts} \\
+Day 3 (25--26 Feb) &
+WebSocket System &
+Socket.IO setup; namespaces (/waiter, /chef, /customer); JWT socket auth &
+Realtime server modules implemented \\
 
-Day 4 \newline 27 Feb &
-Integration \& Coupon System &
-Coupon integration; validation refactor; API hardening and review fixes &
-PR \#12, PR \#15 merged \\
+Day 4 (27 Feb) &
+Integration \& Refactor &
+Coupon system integration; analytics refactor; schema finalization &
+Stable API + updated DB schema \\
 
-Day 5--6 \newline 2--3 Mar &
+Day 5--6 (2--3 Mar) &
 Reservation System &
-Table reservation APIs; order-reservation integration; frontend debugging &
-\texttt{reservation.controller.ts} \\
+Table reservation APIs; order flow debugging; frontend integration support &
+Reservation controller + endpoints \\
 
-Day 7--8 \newline 4--5 Mar &
-AI Integration \& Realtime &
-AI service bridge (FastAPI integration); sentiment and recommendation APIs; WebSocket client integration &
-\texttt{aiService.ts}, 30+ commits \\
+Day 7--8 (4--5 Mar) &
+AI Integration &
+FastAPI bridge; sentiment analysis; recommendation engine; socket event abstraction &
+aiService module integrated \\
 
-Day 9 \newline 5 Mar &
-System Integration Testing &
-End-to-end flow testing (order → kitchen → customer); WebSocket validation &
-E2E demo verified \\
+Day 9 (5 Mar) &
+E2E Testing &
+Full system integration; order flow tested end-to-end &
+Working demo system verified \\
 
-Day 10 \newline 6 Mar &
-Final Delivery \& Presentation &
-Final AI integration; seed data setup; stakeholder presentation (18 min) &
-Final demo delivered successfully \\
+Day 10 (6 Mar) &
+Final Delivery &
+AI final integration; seed data; final presentation &
+Project demo delivered successfully \\
 
-\bottomrule
+\hline
 \end{longtable}
 
 \vspace{1em}
 
 \section*{A.2 Official Daily Log --- Excel / SharePoint}
 
-The BS-23 Daily Stand-up tracker (DS RUET 2026) was maintained throughout the attachment by all 7 team members and reviewed daily by the mentor.
+The BS-23 Daily Stand-up tracker ("DS RUET 2026") was maintained throughout the attachment and reviewed daily by mentors.
 
 \vspace{1em}
 
@@ -78,16 +81,17 @@ The BS-23 Daily Stand-up tracker (DS RUET 2026) was maintained throughout the at
 \qrcode[height=4cm]{https://brainstationo365-my.sharepoint.com/:x:/g/personal/mohoiminule_brainstation-23_com/IQB03VCs_ek6QrP7lra6udOjAeLJeRIPqpLDxysKs7zil4o?rtime=HWIrenbb3kg}
 
 \vspace{0.5em}
-{\small \textbf{Scan QR for Live Tracker}}
+
+{\small \textbf{Scan QR for Live Daily Log}}
 
 \vspace{0.5em}
+
 {\footnotesize
 \url{https://brainstationo365-my.sharepoint.com/:x:/g/personal/mohoiminule_brainstation-23_com/IQB03VCs_ek6QrP7lra6udOjAeLJeRIPqpLDxysKs7zil4o?rtime=HWIrenbb3kg}
 }
 
 \vspace{0.5em}
-{\small Short link: \url{https://bit.ly/4anso9p}}
 
-\vspace{0.5em}
-\textit{DS RUET 2026 --- Daily Stand-up Log (BS-23)}
+{\small Short Link: \url{https://bit.ly/4anso9p}}
+
 \end{center}
