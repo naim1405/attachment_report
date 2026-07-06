@@ -1,0 +1,144 @@
+\chapter{Skills Gained and Lifelong Learning}
+\label{ch:skills_ch8}
+
+\section{New Technical Skills Learned During the Attachment}
+
+\begin{table}[H]
+\centering
+\caption{Technical and Professional Skills Gained --- Team Lead Track}
+\label{tab:skills_ch8}
+\small
+\begin{tabularx}{\textwidth}{@{}p{0.26\textwidth}p{0.30\textwidth}p{0.44\textwidth}@{}}
+\toprule
+\textbf{Category} & \textbf{Skill} & \textbf{Depth / Evidence} \\
+\midrule
+
+System Architecture &
+Distributed real-time architecture &
+Designed 3-tier + WebSocket + AI sidecar system; namespace and room isolation; 14-event architecture catalog \\
+
+Backend &
+Express 5 + TypeScript (strict mode) &
+4,168 LOC authored; modular vertical-slice architecture; middleware pipeline design and enforcement \\
+
+Database &
+Prisma 6 + PostgreSQL 16 &
+22-entity 3NF schema; composite indexing; query optimization using EXPLAIN ANALYZE (p95: 340ms $\rightarrow$ 85ms) \\
+
+Realtime &
+Socket.IO 4 &
+JWT handshake authentication; 3 namespaces; room-based multi-tenancy; reconnect backoff handling \\
+
+Auth &
+JWT + RBAC + tenant isolation &
+Implemented \texttt{verifyJwt} and \texttt{verifyJwtSocket}; hybrid cookie + bearer authentication \\
+
+DevOps &
+Docker-first development &
+Multi-stage Dockerfile (187MB); docker-compose setup; zero-setup onboarding for frontend team \\
+
+AI Integration &
+FastAPI bridge pattern &
+Resilient API wrapper with timeout handling; schema mapping between Node.js and Python services \\
+
+Leadership &
+Technical team leadership &
+Led 6 engineers; 23 PRs reviewed and merged; sprint planning and architecture decisions \\
+
+Frontend Integration &
+React WebSocket client development &
+Built waiter, chef, and customer real-time clients; 45 commits across frontend portals \\
+
+Documentation &
+API and system documentation &
+Swagger/OpenAPI annotations; architecture decision records (ADR); ER diagrams and DBML schemas \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Self-Directed Learning Activities and Resources Used}
+
+\begin{itemize}
+\item \textbf{Socket.IO documentation} --- namespaces, rooms, scaling strategy, event flow design.
+\item \textbf{Prisma documentation} --- multi-tenancy patterns implemented via \texttt{tenant.middleware.ts}.
+\item \textbf{MDN Web Docs + React hooks} --- reusable \texttt{useSocket} hook for frontend portals.
+\item \textbf{FastAPI documentation} --- AI microservice integration (\texttt{/recommend}, \texttt{/sentiment}, \texttt{/analyze-review}).
+\item \textbf{OWASP guidelines} --- JWT security (httpOnly cookies), CORS policy, rate limiting strategy.
+\item \textbf{Code review feedback loop} --- senior engineer reviews used to refine backend architecture patterns.
+\item \textbf{Open-source study} --- Socket.IO internals for event broadcasting and room management behavior.
+\end{itemize}
+
+\section{Adaptation to New Technologies and Industry Trends}
+
+\begin{table}[H]
+\centering
+\caption{Industry Trends Encountered and Learning Outcomes}
+\label{tab:trends_ch8}
+\begin{tabularx}{\textwidth}{@{}p{0.36\textwidth}p{0.64\textwidth}@{}}
+\toprule
+\textbf{Trend} & \textbf{Learning Outcome} \\
+\midrule
+
+AI as Microservice Architecture &
+AI deployed as sidecar service with graceful fallback and API isolation \\
+
+Event-driven Systems &
+WebSocket-based real-time architecture replaced polling entirely \\
+
+API-first Development &
+Contract-first (Zod schemas) enabled parallel frontend/backend development \\
+
+Docker-first Workflow &
+Reduced environment setup time from hours to minutes \\
+
+Platform Engineering &
+Backend designed as reusable platform with stable APIs and shared utilities \\
+
+Shift-left Observability &
+Structured logging reduced debugging time for realtime issues significantly \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Reflection on Lifelong Learning and Leadership Growth}
+
+\begin{quote}
+\textit{“During this attachment I moved from backend-focused coding to full system ownership, coordination, and delivery responsibility.”}
+\end{quote}
+
+\textbf{Key Growth Areas}
+
+\textbf{1. Architecture-first Thinking} --- system design before implementation  
+\textbf{2. Platform Thinking} --- enabling team productivity and consistency  
+\textbf{3. Cross-boundary Execution} --- supporting frontend under deadline pressure  
+\textbf{4. Ownership Mindset} --- responsibility for end-to-end system delivery  
+
+\section{Lifelong Learning Plan}
+
+\begin{itemize}
+\item Weekly 4-hour structured learning:
+  \begin{itemize}
+  \item System design (scalability, distributed systems)
+  \item Engineering leadership (team coordination, architecture thinking)
+  \item Emerging technologies (AI, DevOps, cloud)
+  \end{itemize}
+
+\item Study roadmap:
+  \begin{itemize}
+  \item \textit{Designing Data-Intensive Applications}
+  \item Staff Engineering (Will Larson)
+  \end{itemize}
+
+\item Open-source contribution: 2 PRs per quarter
+
+\item Certifications:
+  \begin{itemize}
+  \item AWS Solutions Architect Associate (2026)
+  \item Kubernetes CKA (2027)
+  \end{itemize}
+\end{itemize}
+
+\textbf{Key Insight:}  
+Software engineering is not only coding; it is system thinking, communication, and decision-making under constraints.

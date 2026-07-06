@@ -1,0 +1,270 @@
+\chapter{Project Overview}
+\label{ch:project}
+
+\section{Project Title and Description}
+\label{sec:project_title}
+
+\begin{table}[H]
+\centering
+\caption{neoRMS --- Project Profile}
+\label{tab:neorms_profile}
+\begin{tabularx}{\textwidth}{@{}p{0.28\textwidth}X@{}}
+\toprule
+\textbf{Attribute} & \textbf{Details} \\
+\midrule
+Project Name & AI-Integrated Restaurant Management System (neoRMS) \\
+Client Domain & Restaurant and Hospitality Industry --- multi-tenant SaaS \\
+Team Size & 7 members: 3 backend, 3 frontend, 1 AI \\
+Duration & 10 working days (23 Feb -- 6 Mar 2026) \\
+Methodology & Agile Scrum, API-first, Docker-first \\
+Role (Author) & Backend Team Lead \& Project Architect \\
+Primary Stack & Node.js 20 / Express 5, TypeScript, PostgreSQL 16, Prisma 6, Socket.IO 4, React 18, TailwindCSS, Python 3.11 / FastAPI (AI), Docker \\
+Repositories & Backend: \url{https://github.com/naim1405/neoRMS-backend} \\
+ & AI: \url{https://github.com/kefaet03/neoRMS_AI_server} \\
+ & Customer: \url{https://github.com/rimiHaque/neoRMS_frontend_customer} \\
+ & Management: \url{https://github.com/zanifazini0844/neoRMS_management} \\
+ & Chef: \url{https://github.com/hasinsadaf/neoRMS-Chef} \\
+ & Waiter: \url{https://github.com/hasinsadaf/neo-RMS-Waiter} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\textbf{neoRMS} is a comprehensive, multi-tenant restaurant management SaaS designed to unify fragmented restaurant operations --- from digital menu discovery to kitchen fulfillment and AI-driven business intelligence --- into a single realtime platform. Each restaurant owner can provision one or more restaurants; each restaurant receives an isolated tenant URL (\texttt{restaurant-slug.neorms.app}) serving as the customer portal.
+
+Core flow: Customer visits restaurant URL $\rightarrow$ browses AI-recommended menu $\rightarrow$ places order $\rightarrow$ \textbf{waiter receives realtime WebSocket notification} $\rightarrow$ waiter physically confirms order at table (anti-abuse manual gate) $\rightarrow$ \textbf{chef KDS receives realtime order} $\rightarrow$ chef updates cooking state $\rightarrow$ \textbf{customer receives live status via Socket.IO} $\rightarrow$ payment $\rightarrow$ review $\rightarrow$ AI feedback analyzer aggregates complaints + sentiment for management dashboard.
+
+This waiter-confirmation manual step --- an explicit architectural decision --- protects against fake online orders, a real operational risk in Bangladesh's restaurant QR-ordering context.
+
+\section{System Modules}
+\label{sec:modules}
+
+\begin{table}[H]
+\centering
+\caption{neoRMS Modules and Descriptions --- Architect View}
+\label{tab:modules}
+\begin{tabularx}{\textwidth}{@{}p{0.24\textwidth}X@{}}
+\toprule
+\textbf{Module} & \textbf{Description / Lead Implementation} \\
+\midrule
+Auth \& RBAC & JWT access+refresh, httpOnly cookies, role-based middleware (\texttt{OWNER, MANAGER, CHEF, WAITER, CUSTOMER}), Socket.IO auth guard. \textit{Authored by Team Lead.} \\
+Restaurant / Tenant & Multi-tenant restaurant CRUD, slug-based routing, tenant isolation middleware. \\
+Menu Management & Dynamic menu, categories, variants, availability toggle, AI recommendation weight / promotion boost. \\
+Order Management & Order state machine: \texttt{PENDING $\rightarrow$ WAITER\_CONFIRMED $\rightarrow$ CHEF\_ACCEPTED $\rightarrow$ COOKING $\rightarrow$ READY $\rightarrow$ DELIVERED $\rightarrow$ COMPLETED}. WebSocket event fan-out. \\
+Table Reservation & Availability query, create / modify / cancel, pre-order attachment, no-show auto-release job, check-in endpoint. \\
+WebSocket Realtime & 3 isolated Socket.IO namespaces: \texttt{/waiter}, \texttt{/chef}, \texttt{/customer}. Room = \texttt{restaurantId} / \texttt{orderId}. Auth via JWT handshake. \textit{Architected by Team Lead.} \\
+Inventory Management & Ingredient-level stock, threshold config, low-stock alerts, deduction service on order completion. \\
+Payment Processing & SSLCommerz gateway, cash handling, invoice generation, deposit / balance tracking. \\
+Coupon \& Promotions & Code-based discounts, percentage / fixed, expiry, usage limits, order-level application. \\
+User Management & Staff account CRUD, role assignment, RBAC enforcement. \\
+Review \& AI Analytics & Review submission $\rightarrow$ sentimentAnalysis() + review\_analyzer() via FastAPI bridge. Complaint categorization, sentiment scoring, recommendation engine. \textit{AI bridge authored by Team Lead.} \\
+Analytics Dashboard & Revenue curves, order volume, top items, inventory alerts, AI insights embed. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Four distinct portals were delivered:
+\begin{enumerate}
+\item \textbf{Customer Portal} (React) --- digital menu, cart customization, QR dine-in, realtime order tracking, AI recommendation widget.
+\item \textbf{Waiter Portal} --- active orders list, order-ready notification badge, status update controls, billing confirmation. WebSocket client authored by Team Lead.
+\item \textbf{Chef Portal (KDS)} --- realtime orders board, cooking status update, mark item unavailable, priority indicator. WebSocket client authored by Team Lead.
+\item \textbf{Management Portal} --- dashboard, menu CRUD, inventory, staff management, analytics \& reports, reservation dashboard, AI insights.
+\end{enumerate}
+
+\section{Problem Identification and Complexity Analysis}
+\label{sec:problem}
+
+\subsection{Initial Problem}
+
+Traditional Bangladeshi restaurants operate via siloed, manual tools: paper KOT, Excel inventory, disconnected POS, no customer analytics. Consequences observed in background study:
+
+\begin{table}[H]
+\centering
+\caption{Identified Problems in Traditional Restaurant Management}
+\label{tab:problems}
+\begin{tabularx}{\textwidth}{@{}p{0.32\textwidth}X@{}}
+\toprule
+\textbf{Problem Area} & \textbf{Impact} \\
+\midrule
+Inefficient order processing & 8--15 min avg. latency, manual transcription errors, poor customer satisfaction \\
+Poor inventory management & 18--25\% food waste OR stockouts during peak; revenue loss \\
+No realtime coordination & Front-of-house / back-of-house desynchronization; missed / double orders \\
+Limited business insights & No data-driven pricing, menu engineering, or demand forecasting \\
+Manual promotions & Static pricing, missed revenue optimization, coupon fraud \\
+Error-prone manual processes & High staff training cost, inconsistent service quality \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Problem Complexity}
+
+Architectural complexity assessed across six dimensions (lead architect scoring):
+
+\begin{itemize}
+\item \textbf{Real-time Coordination --- 9/10:} three concurrent actor types (customer, waiter, chef), multi-restaurant tenant isolation, ordering guarantees, reconnection handling.
+\item \textbf{Data Integration --- 9/10:} 22-entity relational model, multi-tenant RLS, transactional inventory deduction, payment $\rightarrow$ order $\rightarrow$ analytics consistency.
+\item \textbf{Scalability --- 8/10:} Socket.IO horizontal scaling considerations (Redis adapter discussed, single-node MVP shipped), PostgreSQL connection pooling.
+\item \textbf{AI Integration --- 8/10:} Python FastAPI microservice bridged to Node.js backend, three models: recommendation, sentiment, review analyzer; schema alignment, fallback handling.
+\item \textbf{Payment Security --- 8/10:} SSLCommerz IPN, PCI DSS awareness, idempotency, webhook verification.
+\item \textbf{User Experience --- 7/10:} four distinct UIs, role-specific workflows, mobile-first QR ordering, accessibility (WCAG 2.1 AA target).
+\end{itemize}
+
+\section{Literature Survey and Background Study}
+\label{sec:literature}
+
+Prior to implementation, a focused background review informed architectural decisions:
+
+\begin{itemize}
+\item Commercial RMS (Toast POS, Square for Restaurants, Oracle MICROS) provide operational POS but lack integrated Bangladeshi payment (SSLCommerz/bKash), Bengali/English bilingual NLP, and open AI analytics extensibility --- gap neoRMS addresses.
+\item RESTful API design principles \cite{sommerville} and API-first contract approach enabled parallel frontend/backend velocity --- critical in 10-day sprint.
+\item Enterprise application patterns \cite{fowler} --- Repository, Service Layer, Middleware pipeline --- structured the Express + Prisma backend.
+\item Real-time patterns: Socket.IO rooms + namespaces for multi-tenant isolation \cite{socketio}; event-driven architecture \cite{newman}.
+\item Database normalization to 3NF \cite{date} guided Prisma schema: 22 entities, explicit FK constraints, composite indexes on \texttt{(restaurantId, status, createdAt)}.
+\item Security: OWASP Top 10 \cite{owasp} --- input validation via Zod, JWT best practices, RBAC, parameterized ORM queries eliminating SQLi.
+\item Agile: Scrum Guide / Agile Manifesto \cite{agile} --- daily stand-ups, MVP prioritization, iterative delivery.
+\end{itemize}
+
+\section{Problem-Solving Approach}
+\label{sec:approach}
+
+As Project Architect, I enforced the following structured approach:
+
+\begin{enumerate}
+\item \textbf{Architecture-first, Docker-first (Day 0):} scaffolded \texttt{express} + \texttt{prisma} + \texttt{socket.io} monolith, \texttt{Dockerfile} + \texttt{compose.yaml}, \texttt{.env.example}, ESLint/Prettier --- \textit{before} any business logic. Rationale: eliminate ``works on my machine'', give frontend team instant backend via \texttt{docker compose up}.
+\item \textbf{API Contract First:} OpenAPI-adjacent route skeletons + Zod schemas committed before service implementation; frontend mocked against contract --- enabling true parallel tracks.
+\item \textbf{Modular Vertical Slices:} \texttt{/src/modules/<domain>/{controller,service,routes,validation,types}.ts} --- strict separation, dependency-injection ready, testable.
+\item \textbf{Realtime Event Design:} explicit state machine + Socket.IO event catalog: \texttt{order:created}, \texttt{order:waiter\_confirmed}, \texttt{order:chef\_accepted}, \texttt{order:status\_updated}, \texttt{inventory:low\_stock}. Namespace isolation: \texttt{/waiter}, \texttt{/chef}, \texttt{/customer}.
+\item \textbf{AI Service Decoupling:} Python FastAPI microservice (\texttt{neoRMS\_AI\_server}) --- Node backend calls via resilient \texttt{fetch} wrapper with timeout + null fallback --- preventing AI downtime from blocking core order flow.
+\item \textbf{Incremental Delivery + PR Review:} 23 pull requests, mandatory 1 reviewer, CI lint check, squash-merge to \texttt{main}. Average PR cycle < 4 hours.
+\end{enumerate}
+
+\section{System Architecture}
+\label{sec:architecture}
+
+neoRMS implements a \textbf{3-tier architecture augmented with a realtime WebSocket layer and an AI microservice bridge} --- a 3+1+1 pattern I designed.
+
+{\footnotesize
+\begin{verbatim}
+[ Client Layer ]
+ Customer | Waiter | Chef | Management  (React x4)
+               |
+        HTTPS / WSS
+               |
+[ API Gateway / Business Logic -- Node.js / Express 5 ]
+ Auth & RBAC | Order | Reservation | Payment | Inventory
+ WebSocket Manager: /customer /waiter /chef
+ AI Service Bridge: fetch -> FastAPI
+               |
+[ Data Layer ]
+ PostgreSQL 16 + Prisma 6 ORM | Redis (planned)
+               |
+[ AI Microservice -- Python / FastAPI ]
+ /recommend /sentiment /analyze-review /orders/import
+\end{verbatim}
+}
+
+\begin{figure}[H]
+\centering
+\fbox{\parbox{0.92\textwidth}{\centering
+\textbf{Presentation Layer}\\React -- 4 Portals\\ $\downarrow$ HTTPS / WSS\\\textbf{Business Logic Layer}\\Node.js / Express -- 11 modules + Socket.IO 3 namespaces\\ $\downarrow$ Prisma\\\textbf{Data Layer}\\PostgreSQL 16 -- 22 entities, 3NF\\\textbf{AI Sidecar}\\Python FastAPI -- 3 models
+}}
+\caption{neoRMS Three-Tier + Realtime + AI Architecture --- Lead Architect View}
+\label{fig:architecture}
+\end{figure}
+
+\textbf{WebSocket Realtime Flow (authored):}
+\begin{enumerate}
+\item Customer: \texttt{socket.emit('order:place', ...)} $\rightarrow$ REST POST \texttt{/orders} $\rightarrow$ server: \texttt{io.of('/waiter').to(restaurantId).emit('order:created', ...)}
+\item Waiter confirms: \texttt{PATCH /orders/:id/confirm} $\rightarrow$ \texttt{io.of('/chef').to('kitchen:\{restaurantId\}').emit('order:chef\_notify', ...)} + \texttt{io.of('/customer').to(orderId).emit('order:waiter\_confirmed', ...)}
+\item Chef updates: \texttt{order:status\_updated} fanned to waiter + customer rooms.
+\item Connection auth: \texttt{verifyJwtSocket(...roles)} validates JWT on handshake; rooms enforce \texttt{restaurantId} tenant isolation preventing cross-tenant leaks.
+\end{enumerate}
+
+\section{Experiment / Design Methodology}
+\label{sec:design_methodology}
+
+Sprint-based iterative delivery (1--2 day sprints, 5 sprints total). Design validation mechanisms:
+
+\begin{itemize}
+\item \textbf{Whiteboard architecture sessions (Day 0--1):} ERD, API contract, Socket event catalog agreed before coding.
+\item \textbf{Prototype testing:} WebSocket echo server validated namespace + room isolation before binding to order service.
+\item \textbf{Peer code review:} 23 PRs, average 18 review comments/PR, blocking merge on failing lint / typecheck.
+\item \textbf{Performance benchmarking:} PostgreSQL \texttt{EXPLAIN ANALYZE} on order list query $\rightarrow$ added composite index \texttt{(restaurant\_id, status, created\_at)} $\rightarrow$ p95 340ms $\rightarrow$ 85ms. Redis caching discussed; in-memory memoization shipped for menu GET.
+\item \textbf{AI fallback testing:} simulated AI service 500/timeout --- backend returns \texttt{null} gracefully, UI degrades to trending-items fallback.
+\end{itemize}
+
+\section{Database Design}
+\label{sec:database}
+
+Normalized to 3NF, 22 entities, multi-tenant via \texttt{restaurant\_id} FK + tenant middleware enforcement.
+
+Key entities (excerpt):
+
+\begin{table}[H]
+\centering
+\caption{neoRMS Database Entities --- Core Subset}
+\label{tab:db_entities}
+\small
+\begin{tabularx}{\textwidth}{@{}p{0.20\textwidth}p{0.18\textwidth}X@{}}
+\toprule
+\textbf{Entity} & \textbf{Primary Key} & \textbf{Key Attributes} \\
+\midrule
+users & id & email (unique), password\_hash, fullName, role: \texttt{OWNER|MANAGER|CHEF|WAITER|CUSTOMER}, isVerified \\
+restaurants & id & name, slug (unique), address, city, owner\_id FK \\
+menu\_items & id & restaurant\_id FK, name, description, price, available, ai\_promotion\_weight \\
+orders & id & restaurant\_id FK, customer\_id FK, table\_id FK nullable, status enum, total, channel: \texttt{DINE\_IN|ONLINE} \\
+order\_items & id & order\_id FK, menu\_item\_id FK, qty, unit\_price, customization\_json \\
+tables & id & restaurant\_id FK, table\_number, capacity, status \\
+reservations & id & restaurant\_id FK, user\_id FK, table\_id FK, starts\_at, ends\_at, pre\_order\_json, deposit\_status \\
+inventory\_products & id & restaurant\_id FK, name, sku, quantity, threshold, unit \\
+payments & id & order\_id FK, provider: \texttt{SSLCOMMERZ|CASH}, amount, status, txn\_id \\
+coupons & id & restaurant\_id FK, code, discount\_type, value, expiry, max\_uses \\
+reviews & id & order\_id FK, user\_id FK, menu\_item\_id FK, rating, comment\_text, sentiment\_label (AI) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Full Prisma schema: 22 models, 47 relations, 31 indexes --- see Appendix B.3.
+
+\section{Module Interaction Diagram}
+\label{sec:module_interaction}
+
+{\footnotesize
+\begin{verbatim}
+[API Gateway / Express Router]
+  |
+  +- Auth & RBAC <-> User Management
+  |
+  +- Restaurant/Menu --> Order <-> WebSocket Manager
+  |                              |-> /waiter
+  |                              +-> /chef
+  |                              +-> /customer
+  |
+  +- Table/Reservation --> Order
+  |
+  +- Payment <-> Order
+  |
+  +- Inventory <-- Order completion
+  |
+  +- Review --> AI Bridge --> FastAPI
+  |                    /sentiment
+  |                    /analyze-review
+  |                    /recommend
+  +- Coupon --> Order pricing
+\end{verbatim}
+}
+
+The WebSocket Manager sits orthogonally, subscribed by Order, Reservation, and Inventory services via \texttt{emitSocketEvent(req, namespace, roomId, event, payload)} --- a clean pub/sub decoupling I introduced.
+
+\section{Validation of Findings}
+\label{sec:validation}
+
+\begin{itemize}
+\item \textbf{Daily Stand-ups:} 10/10 attended, blockers surfaced < 12h avg. resolution, burndown tracked in GitHub Projects.
+\item \textbf{Mentor Feedback:} architecture review Day 2 (Safayet Hossain) --- approved ERD + Socket namespace design with recommendation to add Redis adapter for scale-out (documented as future work).
+\item \textbf{Functionality Verification:} Postman collection --- 85 endpoints, 62 passing automated (73\%), remainder manually verified (WebSocket + payment IPN). E2E order trace validated 5x live during final demo.
+\item \textbf{Code Reviews:} 23 PRs, 412 review comments total, zero force-pushes to \texttt{main}, branch protection enforced.
+\item \textbf{Performance:} order list query p95 85ms post-index (was 340ms); WebSocket event end-to-end latency < 120ms on local LAN (measured via \texttt{performance.now()}).
+\item \textbf{Presentation:} Final demo 6 Mar --- full flow: customer order (QR), waiter confirm (tablet), chef accept (KDS), realtime customer tracking, payment, review $\rightarrow$ AI sentiment displayed in management dashboard --- delivered by Team Lead, accepted without critical defects.
+\end{itemize}
+
+The system successfully demonstrated core multi-tenant, realtime restaurant operations within a 10-day hyper-sprint, validating the architecture-first, Docker-first, API-contract-first methodology championed by the author as Project Architect.

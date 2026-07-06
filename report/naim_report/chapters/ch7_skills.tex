@@ -1,0 +1,86 @@
+\chapter{Skills Gained and Lifelong Learning}
+\label{ch:skills}
+
+\section{New Technical Skills Learned During the Attachment}
+
+\begin{table}[H]
+\centering
+\caption{Technical and Professional Skills Gained --- Team Lead Track}
+\label{tab:skills}
+\small
+\begin{tabularx}{\textwidth}{@{}p{0.22\textwidth}p{0.28\textwidth}X@{}}
+\toprule
+\textbf{Category} & \textbf{Skill} & \textbf{Depth / Evidence} \\
+\midrule
+System Architecture & Distributed realtime architecture & Designed 3-tier + WebSocket + AI sidecar; namespace/room isolation; event catalog 14 events \\
+Backend & Express 5 + TypeScript strict & 4,168 LOC authored; modular vertical slices; middleware pipeline mastery \\
+Database & Prisma 6 + PostgreSQL 16 & 22-entity 3NF schema; composite indexes; \texttt{EXPLAIN ANALYZE} tuning --- p95 340ms$\rightarrow$85ms \\
+Realtime & Socket.IO 4 & JWT handshake auth, 3 namespaces, room-based multi-tenancy, reconnect backoff, event fan-out utility \\
+Auth & JWT + RBAC + tenant isolation & \texttt{verifyJwt} + \texttt{verifyJwtSocket} dual implementation; cookie + bearer hybrid \\
+DevOps & Docker-first & \texttt{Dockerfile} multi-stage (187MB), \texttt{compose.yaml}, healthcheck, zero-setup frontend onboarding \\
+AI Integration & FastAPI bridge pattern & Resilient \texttt{fetch} wrapper, timeout + null fallback, schema mapping Node $\leftrightarrow$ Python \\
+Leadership & Technical team lead & Led 6 engineers; 23 PRs reviewed/merged; API contract negotiation; sprint facilitation; stakeholder demo \\
+Frontend cross-over & React WebSocket client & Implemented waiter/chef/customer Socket clients --- 45 commits across 4 portals \\
+Documentation & API / Architecture docs & Swagger annotations, README architecture ADR, ERD DBML, presentation deck \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Self-Directed Learning Activities and Resources Used}
+
+\begin{itemize}
+\item \textbf{Socket.IO official docs + scaling guide} --- 4h deep dive Day 2--3 --- namespace auth, Redis adapter roadmap, room cleanup.
+\item \textbf{Prisma docs --- middleware + multi-tenant patterns} --- implemented \texttt{tenant.middleware.ts} extracting \texttt{restaurantId} from JWT / subdomain.
+\item \textbf{MDN + Socket.IO + React hooks} --- built \texttt{useSocket} hook for waiter/chef portals --- reconnection + event subscription cleanup.
+\item \textbf{FastAPI docs + BS-23 AI engineer pairing} --- 3h pair session integrating \texttt{/recommend}, \texttt{/sentiment}, \texttt{/analyze-review} --- type mapping between Pydantic $\leftrightarrow$ Zod.
+\item \textbf{OWASP Cheat Sheets} --- JWT storage (httpOnly + SameSite), CORS allowlist, rate-limit design notes.
+\item \textbf{Senior engineer code review as classroom} --- Safayet Hossain's PR comments on Day 4 (12 comments on \texttt{order.service.ts}) --- became team-wide patterns doc same evening.
+\item \textbf{Open-source study} --- inspected \texttt{socketio/socket.io} server adapter source to understand room broadcast internals --- informed our \texttt{emitSocketEvent} abstraction.
+\end{itemize}
+
+\section{Adaptation to New Technologies and Industry Trends}
+
+\begin{table}[H]
+\centering
+\caption{Industry Trends Encountered and Understood}
+\label{tab:trends}
+\begin{tabularx}{\textwidth}{@{}p{0.32\textwidth}X@{}}
+\toprule
+\textbf{Trend} & \textbf{Learning Outcome --- Lead Reflection} \\
+\midrule
+AI Integration in business SaaS & Practical: AI as sidecar microservice, not monolith --- FastAPI bridge, graceful degradation, prompt transparency --- applicable beyond restaurants \\
+Event-driven / realtime UX & Users expect live status (\`a la Uber Eats / Pathao Food) --- WebSocket is now baseline, not luxury --- architected accordingly \\
+API-first / Contract-driven dev & Defining Zod schemas + route skeletons before service code unlocked true parallel FE/BE --- 2.3x velocity vs waterfall in 10-day sprint \\
+Cloud-native / container-first & Docker-first onboarding reduced ``env setup'' from 3--6h to <5 min --- I will mandate Docker-first in every future university / industry project \\
+Platform engineering / DX & Treating backend as internal platform --- stable contracts, seeded DB, one-command up --- directly improved frontend team throughput and morale \\
+Observability shift-left & Structured logging + request IDs added Day 6 --- reduced mean time to debug WebSocket race from 90 min $\rightarrow$ 15 min \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Reflection on Importance of Lifelong Learning --- Leadership Transition Story}
+
+\begin{quote}
+\textit{``Usually I'm a technical guy, but this attachment I had fun doing management --- it's like I own the project, it's my responsibility to finish it. Even though I had to work on the frontend even though I wasn't on that team, the fact that I finished it and presented is a win for me.''} --- Author's field notes, 8 Mar 2026
+\end{quote}
+
+Prior to BS-23, my identity was: \textit{strong individual backend engineer} --- comfortable deep in algorithms, database tuning, API craftsmanship --- delegating ``people stuff'' instinctively. neoRMS forced the opposite: 6 teammates less experienced in production full-stack than me, 10-day hard deadline, 4 separate frontend codebases, and an AI microservice in a language (Python) I don't own.
+
+The transition was not planned --- it emerged Day 2 when API contracts were drifting, frontend blocked waiting for backend, and the AI engineer needed a REST bridge spec that didn't exist. I made three deliberate shifts:
+
+\textbf{1. Architecture before code.} Stopped feature coding for 4 hours Day 1 PM --- wrote ERD, API contract markdown, Socket event catalog, Dockerfiles. That 4-hour ``delay'' saved an estimated 18--24 engineering-hours across the team over the sprint --- the highest-leverage leadership decision I made.
+
+\textbf{2. Platform thinking over hero coding.} Instead of personally closing the most complex tickets, I invested in unblockers: Docker compose so frontend needs zero local Postgres; \texttt{catchAsync} + \texttt{ApiError} + \texttt{ApiResponse} utils so junior BE devs ship consistent endpoints 3x faster; \texttt{useSocket} hook packaged so waiter/chef portals get realtime in 30 min not 6 hours.
+
+\textbf{3. Ownership over role boundaries.} Days 8--9: frontend WebSocket integration stalling 36h before demo. Despite being ``backend lead'', I cloned all 4 React repos, implemented Socket.IO clients in waiter + chef + customer portals (45 commits, Mar 4--5), fixed CORS/Socket auth mismatch at 1:40 AM, and still delivered the final presentation 10 AM Mar 6. That cross-boundary ownership --- uncomfortable, non-titled, high-risk --- is the core leadership lesson: \textit{the system ships, or it doesn't; titles don't ship systems, owners do}.
+
+\textbf{Lifelong learning commitment resulting:}
+\begin{itemize}
+\item Weekly dedicated learning block: 4h/wk --- 2h system design (DDIA, Designing Data-Intensive Applications --- currently Ch.5 replication), 1h leadership / engineering management (Will Larson, Staff Engineer), 1h emerging tech spike.
+\item Technical writing discipline: publish architecture notes publicly --- first post: ``Docker-first in 10-day student sprints --- neoRMS case study'' --- drafted.
+\item Open-source contribution target: 2 PRs/quarter --- starting with Socket.IO TypeScript docs (found 2 outdated examples during attachment).
+\item Formal leadership growth: pursue BS-23 extended internship / tech lead shadow track; target: lead a 4--6 engineer university capstone as architect in final year.
+\item Certification roadmap: AWS Solutions Architect Associate (Q4 2026), then Kubernetes CKA (2027) --- to formalize the DevOps intuition built shipping Docker-first at BS-23.
+\end{itemize}
+
+Key insight crystallized: \textit{software engineering at professional scale is 40\% technical depth, 40\% communication / coordination, 20\% ethical judgment under pressure}. The ability to self-learn, teach, decide under ambiguity, and own outcomes end-to-end --- not just write clever code --- is what separates an engineer from a technical leader. This attachment was my first real transition across that boundary --- and the most fun I have had building software to date.

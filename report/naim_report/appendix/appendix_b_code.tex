@@ -1,0 +1,283 @@
+\chapter{Code Snippets}
+\label{app:code}
+
+This appendix presents representative production code authored by Md. Naimuzzaman as Backend Team Lead \& Project Architect during the neoRMS attachment. Full source: \url{https://github.com/naim1405/neoRMS-backend}
+
+\section{JWT Authentication and RBAC Middleware --- with Socket.IO guard}
+\label{app:auth_middleware}
+
+\begin{lstlisting}[caption={JWT Authentication + RBAC + Socket.IO auth guard --- \texttt{src/middlewares/auth.middleware.ts} --- Author: Naim --- 24 Feb 2026},label=lst:auth]
+import ApiError from '../utils/ApiError';
+import httpstatus from 'http-status';
+import { NextFunction, Response } from 'express';
+import prisma from '../utils/prisma';
+import { AuthUtils } from '../utils/AuthUtils';
+import { Socket } from '../sockets/socket.types';
+
+export const verifyJwt =
+    (...requiredRoles: string[]) =>
+    async (req: any, res: Response, next: NextFunction) => {
+        try {
+            const accessToken =
+                req.cookies?.accessToken ||
+                req.headers.authorization?.split(' ')[1];
+
+            if (!accessToken) {
+                throw new ApiError(
+                    httpstatus.UNAUTHORIZED,
+                    'You are not logged in',
+                );
+            }
+            const verifiedToken = AuthUtils.verifyAccessToken(accessToken);
+
+            const user = await prisma.user.findUnique({
+                where: { id: verifiedToken?.id },
+                select: {
+                    id: true,
+                    email: true,
+                    fullName: true,
+                    isVerified: true,
+                    role: true,
+                },
+            });
+            if (!user) {
+                throw new ApiError(httpstatus.UNAUTHORIZED, 'Invalid token');
+            }
+            if (!user.isVerified) {
+                throw new ApiError(
+                    httpstatus.UNAUTHORIZED,
+                    'Please verify your email',
+                );
+            }
+            req.user = user;
+
+            if (requiredRoles.length && !requiredRoles.includes(user.role)) {
+                throw new ApiError(httpstatus.FORBIDDEN, 'Forbidden');
+            }
+            next();
+        } catch (err) {
+            next(err);
+        }
+    };
+
+export const verifyJwtSocket =
+    (...requiredRoles: string[]) =>
+    async (socket: Socket, next: any) => {
+        try {
+            const accessToken =
+                socket.handshake.auth?.token ||
+                socket.handshake.headers?.authorization?.split(' ')[1];
+            if (!accessToken) {
+                const err = new Error('Token missing') as any;
+                err.data = { status: httpstatus.UNAUTHORIZED, message: 'No auth token provided' };
+                return next(err);
+            }
+            const verifiedToken = AuthUtils.verifyAccessToken(accessToken);
+            const user = await prisma.user.findUnique({
+                where: { id: verifiedToken?.id },
+                select: { id: true, email: true, fullName: true, isVerified: true, role: true },
+            });
+            if (!user) {
+                const err = new Error('Invalid Token') as any;
+                err.data = { status: httpstatus.UNAUTHORIZED, message: 'Invalid token' };
+                return next(err);
+            }
+            socket.user = user;
+            if (requiredRoles.length && !requiredRoles.includes(user.role)) {
+                const err = new Error('Forbidded') as any;
+                err.data = { status: httpstatus.FORBIDDEN, message: 'Forbidded' };
+                return next(err);
+            }
+            next();
+        } catch (error) {
+            const err = new Error('Invalid token') as any;
+            err.data = { status: httpstatus.UNAUTHORIZED, message: 'Invalid token' };
+            return next(err);
+        }
+    };
+\end{lstlisting}
+
+\section{WebSocket Realtime Server --- 3 Namespaces}
+\label{app:websocket}
+
+\begin{lstlisting}[caption={Socket.IO initialization --- multi-namespace, room-based tenant isolation --- \texttt{src/sockets/index.ts}},label=lst:socket]
+import { Server } from 'socket.io';
+import { Request } from 'express';
+import { setupWaiterSocketNamespace } from './waiterSocket';
+import { setupChefSocketNamespace } from './chefSocket';
+import { setupCustomerSocketNamespace } from './customerSocket';
+import { SOCKET_NAMESPACES } from './socket.types';
+
+const initializeScoketIO = (io: Server) => {
+    setupWaiterSocketNamespace(io);
+    setupChefSocketNamespace(io);
+    setupCustomerSocketNamespace(io);
+};
+
+const emitSocketEvent = (
+    req: Request,
+    socketNamespace: SOCKET_NAMESPACES,
+    roomId: string,
+    event: string,
+    payload: any,
+) => {
+    const io: Server = req.app.get('io');
+    io.of(socketNamespace).to(roomId).emit(event, payload);
+};
+
+export { initializeScoketIO, emitSocketEvent, SOCKET_NAMESPACES };
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Waiter namespace --- JWT auth + restaurant room join},label=lst:waiter_socket]
+// src/sockets/waiterSocket.ts --- excerpt
+import { Server } from 'socket.io';
+import { verifyJwtSocket } from '../middlewares/auth.middleware';
+
+export const setupWaiterSocketNamespace = (io: Server) => {
+  const waiterNsp = io.of('/waiter');
+  waiterNsp.use(verifyJwtSocket('WAITER','MANAGER','OWNER'));
+  waiterNsp.on('connection', (socket) => {
+    const restaurantId = socket.handshake.auth.restaurantId 
+      || socket.user?.restaurantId;
+    if (restaurantId) {
+      socket.join(`restaurant:${restaurantId}`);
+      socket.join(`waiter:${restaurantId}`);
+    }
+    socket.on('order:acknowledge', (orderId) => {
+      socket.to(`restaurant:${restaurantId}`).emit('order:waiter_seen', { orderId, waiterId: socket.user.id });
+    });
+    socket.on('disconnect', () => {
+      // room auto-leave handled by socket.io
+    });
+  });
+};
+\end{lstlisting}
+
+\section{AI Service Bridge --- FastAPI integration}
+\label{app:ai_service}
+
+\begin{lstlisting}[caption={AI microservice bridge --- resilient fetch with fallback --- \texttt{src/modules/aiService/index.ts}},label=lst:ai]
+import config from '../../config';
+const aiServiceUrl = config.ai_service_url;
+
+async function sentimentAnalysis(text: string): Promise<string | null> {
+    try {
+        const re = await fetch(`${aiServiceUrl}/sentiment`, {
+            headers: { 'Content-Type': 'application/json' },
+            method: 'POST',
+            body: JSON.stringify({ text }),
+        });
+        const resJson = await re.json();
+        if (!resJson.success) {
+            throw new Error(`AI service error: ${resJson.error || 'Unknown error'}`);
+        }
+        return resJson.data.sentiment_name as string;
+    } catch (e) {
+        console.error('Error in sentiment analysis:', e);
+        return null; // graceful degradation
+    }
+}
+
+async function getRecommendation(data: {
+    already_ordered: string[];
+    num_recommendations: number;
+    restaurant_id: string;
+}) {
+    try {
+        const re = await fetch(`${aiServiceUrl}/recommend`, {
+            headers: { 'Content-Type': 'application/json' },
+            method: 'POST',
+            body: JSON.stringify(data),
+        });
+        const resJson = await re.json();
+        if (!resJson.success) throw new Error(`AI service error`);
+        return resJson.data;
+    } catch (e) {
+        console.error('Error in recommendation:', e);
+        return null;
+    }
+}
+
+export const aiService = {
+    sentimentAnalysis,
+    review_analyzer,
+    getRecommendation,
+    sendOrderData,
+};
+\end{lstlisting}
+
+\section{Database Schema --- Prisma excerpt}
+\label{app:schema}
+
+\begin{lstlisting}[caption={Prisma schema excerpt --- multi-tenant core entities},label=lst:schema]
+// prisma/schema.prisma --- excerpt --- Author: Naim
+model User {
+  id         String   @id @default(cuid())
+  email      String   @unique
+  password   String
+  fullName   String
+  role       Role     @default(CUSTOMER)
+  isVerified Boolean  @default(false)
+  restaurants Restaurant[] @relation("RestaurantOwner")
+  orders     Order[]
+  reviews    Review[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Restaurant {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  address     String?
+  city        String?
+  ownerId     String
+  owner       User     @relation("RestaurantOwner", fields: [ownerId], references: [id])
+  menuItems   MenuItem[]
+  tables      Table[]
+  orders      Order[]
+  inventory   InventoryProduct[]
+  createdAt   DateTime @default(now())
+
+  @@index([ownerId])
+  @@index([slug])
+}
+
+model Order {
+  id            String      @id @default(cuid())
+  restaurantId  String
+  restaurant    Restaurant  @relation(fields: [restaurantId], references: [id])
+  customerId    String?
+  customer      User?       @relation(fields: [customerId], references: [id])
+  tableId       String?
+  status        OrderStatus @default(PENDING)
+  channel       OrderChannel @default(DINE_IN)
+  total         Decimal     @db.Decimal(10,2)
+  items         OrderItem[]
+  payment       Payment?
+  createdAt     DateTime    @default(now())
+
+  @@index([restaurantId, status, createdAt])
+}
+
+enum Role {
+  OWNER
+  MANAGER
+  CHEF
+  WAITER
+  CUSTOMER
+}
+
+enum OrderStatus {
+  PENDING
+  WAITER_CONFIRMED
+  CHEF_ACCEPTED
+  COOKING
+  READY
+  DELIVERED
+  COMPLETED
+  CANCELLED
+}
+\end{lstlisting}
+
+Full schema: 22 models, 47 relations, 31 indexes --- see: \url{https://github.com/naim1405/neoRMS-backend/blob/main/prisma/schema.prisma}

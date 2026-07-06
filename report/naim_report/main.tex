@@ -1,0 +1,314 @@
+% Industrial Attachment Report
+% Md. Naimuzzaman -- RUET CSE
+% Brain Station 23 -- neoRMS
+\documentclass[12pt,a4paper,oneside]{report}
+
+% ===== Packages =====
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in,top=1.2in,bottom=1.2in]{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{microtype}
+\usepackage{etoolbox}
+\appto\sloppy{\hbadness 10000\relax}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,shapes,shapes.geometric,calc,trees,fit,backgrounds}
+\usepackage{pgfplots}
+\usepackage[strings]{underscore}
+\pgfplotsset{compat=1.18}
+\usepackage{qrcode}
+
+% ===== Styling =====
+\onehalfspacing
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=blue,
+  urlcolor=blue,
+  pdftitle={Industrial Attachment Report -- neoRMS -- Brain Station 23},
+  pdfauthor={Md. Naimuzzaman}
+}
+
+\graphicspath{{figures/}}
+
+% Code listing style
+\definecolor{codebg}{RGB}{248,248,248}
+\definecolor{codegray}{RGB}{100,100,100}
+\lstdefinestyle{tsstyle}{
+  backgroundcolor=\color{codebg},
+  basicstyle=\ttfamily\footnotesize,
+  breaklines=true,
+  frame=single,
+  framerule=0.3pt,
+  rulecolor=\color{gray!40},
+  numbers=left,
+  numberstyle=\tiny\color{codegray},
+  xleftmargin=1.5em,
+  keywordstyle=\color{blue!70!black},
+  commentstyle=\color{green!40!black},
+  stringstyle=\color{orange!70!black},
+  showstringspaces=false,
+  tabsize=2,
+  captionpos=b
+}
+\lstset{style=tsstyle}
+
+% Headers
+\setlength{\headheight}{14.5pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\fancyhead[L]{\small\textit{Industrial Attachment Report -- neoRMS}}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% Chapter title format
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}
+  {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{-30pt}{20pt}
+
+% ===== Document info =====
+\newcommand{\reporttitle}{INDUSTRIAL ATTACHMENT REPORT}
+\newcommand{\orgname}{Brain Station 23 (BS-23)}
+\newcommand{\attachmentperiod}{23 February -- 6 March 2026}
+\newcommand{\attachmentduration}{10 Days}
+\newcommand{\studentname}{Md. Naimuzzaman}
+\newcommand{\studentroll}{2103044}
+\newcommand{\studentsection}{A}
+\newcommand{\studentseries}{21}
+\newcommand{\studentrole}{Backend Team Lead \& Project Architect}
+\newcommand{\supervisorname}{Md. Mazharul Islam}
+\newcommand{\supervisortitle}{Lecturer}
+\newcommand{\department}{Department of Computer Science \& Engineering}
+\newcommand{\university}{Rajshahi University of Engineering \& Technology}
+\newcommand{\submissiondate}{July 7, 2026}
+
+\begin{document}
+
+% ===== FRONT MATTER =====
+\pagenumbering{roman}
+
+% Title Page
+\begin{titlepage}
+\centering
+\vspace*{1cm}
+{\Large \university\par}
+{\large \department\par}
+{Rajshahi -- 6204, Bangladesh\par}
+\vspace{1.5cm}
+{\Large\bfseries \reporttitle\par}
+\vspace{0.8cm}
+{\large Organization: \orgname\par}
+{\large Attachment Period: \attachmentperiod\par}
+{\large Duration: \attachmentduration\par}
+\vspace{1.5cm}
+\begin{minipage}{0.45\textwidth}
+\raggedright
+\textbf{Submitted By:}\\
+\studentname\\
+Roll No.: \studentroll\\
+Section: \studentsection\\
+Series: \studentseries\\
+Role During Attachment:\\
+\studentrole
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\raggedleft
+\textbf{Submitted To:}\\
+\supervisorname\\
+\supervisortitle\\
+\department\\
+\university
+\end{minipage}
+
+\vfill
+{\large Date of Submission: \submissiondate\par}
+\end{titlepage}
+
+% Declaration
+\chapter*{Declaration}
+\addcontentsline{toc}{chapter}{Declaration}
+I hereby declare that this industrial attachment report is based on my genuine work and experience during the 10-day attachment program at Brain Station 23 (BS-23) from 23 February to 6 March 2026. All information provided in this report is true and accurate to the best of my knowledge.
+
+I have not copied or plagiarized any content from other sources without proper acknowledgment. The project details, experiences, and insights shared in this report are based on my direct involvement as Backend Team Lead \& Project Architect in the AI-Integrated Restaurant Management System (neoRMS).
+
+I understand that any misrepresentation or false information in this report may result in serious academic consequences.
+
+\vspace{2cm}
+\noindent
+\begin{tabular}{@{}p{0.5\textwidth}p{0.5\textwidth}@{}}
+Signature: \hrulefill & Date: \hrulefill \\
+Name: \studentname & Roll: \studentroll \\
+Section: \studentsection & Series: \studentseries \\
+\end{tabular}
+
+\clearpage
+
+% Acknowledgment
+\chapter*{Acknowledgment}
+\addcontentsline{toc}{chapter}{Acknowledgment}
+I would like to express my sincere gratitude to the following individuals and organizations for their invaluable support during this industrial attachment:
+
+\begin{itemize}[leftmargin=1.5em]
+\item \supervisorname, \supervisortitle, \department, RUET, for continuous academic guidance and facilitating this industrial attachment opportunity.
+\item \textbf{Brain Station 23 (BS-23)} for providing an excellent opportunity to work on a real-world, full-stack software engineering project in a professional corporate environment.
+\item \textbf{My supervisors and mentors at BS-23} --- particularly \textbf{Mohoiminul Sohol}, Project Manager at Brain Station 23, who served as our attachment mentor, and \textbf{Jahangir Murshidi}, Senior Executive, Human Resources, who coordinated the entire program. I am also grateful to \textbf{Mohammad Safayet Hossain}, Senior Software Engineer at BS-23, for conducting multiple insightful technical sessions that significantly enriched our learning experience.
+\item \textbf{My neoRMS team members} --- Mahfuz Saim, Syed Asif Johan, Kefaet Ullah, Khurshid Jahan Haque Rimi, Md. Hasin Sadaf, and Zanifa Islam --- for their exceptional collaboration, trust in my technical leadership, and cooperative spirit during intensive 10-day delivery.
+\item \textbf{The development team at BS-23} for demonstrating industry best practices in architecture, code review, DevOps, and Agile Scrum, and helping us understand real-world software engineering.
+\item \textbf{The Department of Computer Science \& Engineering, RUET} for facilitating this valuable learning opportunity and preparing me for industry-oriented engineering practice.
+\end{itemize}
+
+\clearpage
+
+% Executive Summary
+\chapter*{Executive Summary}
+\addcontentsline{toc}{chapter}{Executive Summary}
+
+This report documents the industrial attachment experience at Brain Station 23 (BS-23), Dhaka, Bangladesh, from 23 February to 6 March 2026. During this 10-day intensive program, I served as \textbf{Backend Team Lead \& Project Architect} in the development of the \textbf{AI-Integrated Restaurant Management System (neoRMS)} --- a comprehensive, multi-tenant restaurant operations platform with real-time order orchestration and integrated AI analytics.
+
+neoRMS provides four integrated portals: a customer-facing digital menu and ordering portal, a waiter confirmation portal, a chef kitchen display system (KDS), and a restaurant owner/manager analytics portal. Each restaurant receives an isolated tenant URL. Real-time WebSocket communication synchronizes order state across customer, waiter, and chef clients, with manual waiter confirmation designed to prevent order misuse.
+
+The project team comprised seven RUET CSE students: three backend, three frontend, and one AI engineer. As backend lead and system architect, my core responsibilities included: project bootstrap and architecture design, JWT authentication with RBAC, PostgreSQL + Prisma schema design (22 entities, 3NF), WebSocket server architecture with three isolated namespaces and room-based multi-tenant isolation, Docker-first deployment pipeline, AI FastAPI service integration (recommendation, sentiment analysis, review analyzer), cross-portal WebSocket client integration, code review / technical mentorship, and final project presentation.
+
+Key technical outcomes: \textbf{85 RESTful API endpoints} architected across 11 modules, \textbf{3 Socket.IO namespaces with 14 realtime events}, \textbf{9,126 LOC TypeScript backend} (4,168 LOC personally authored, 46\%), \textbf{22-entity normalized database}, \textbf{Docker containerized deployment}, and \textbf{AI service bridge with 4 endpoints}. The system successfully demonstrated end-to-end order flow: customer order $\rightarrow$ waiter confirm $\rightarrow$ chef accept $\rightarrow$ real-time status tracking $\rightarrow$ payment $\rightarrow$ AI-driven review analytics, within the 10-day sprint using Agile Scrum.
+
+Beyond technical execution, this attachment marked a significant professional transition --- from a primarily technical individual contributor to a system architect and team lead responsible for people, architecture decisions, and delivery ownership. Managing a less-experienced team, balancing quality vs. velocity under extreme time pressure, integrating AI services, and presenting to senior engineers provided rich exposure to professional software engineering leadership, project management, and ethical responsibility.
+
+The report covers organizational background of BS-23, detailed neoRMS project overview with architecture and database design, tools and techniques, societal / safety / legal considerations, professional ethics, skills gained with emphasis on leadership transition and lifelong learning, challenges and solutions, quantified contributions, and recommendations for BS-23, RUET, and future interns.
+
+\vspace{1em}
+\noindent\textbf{Keywords:} Restaurant Management System, Node.js, Express, PostgreSQL, Prisma, WebSocket, Socket.IO, React, Docker, AI Integration, Agile Scrum, Team Leadership, Software Architecture
+
+\clearpage
+
+% TOC etc
+\tableofcontents
+\clearpage
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
+\clearpage
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
+\clearpage
+
+% Abbreviations
+\chapter*{List of Abbreviations}
+\addcontentsline{toc}{chapter}{List of Abbreviations}
+\begin{tabular}{@{}p{0.25\textwidth}p{0.70\textwidth}@{}}
+\toprule
+\textbf{Abbreviation} & \textbf{Full Form} \\
+\midrule
+AI & Artificial Intelligence \\
+API & Application Programming Interface \\
+BS-23 & Brain Station 23 \\
+CRUD & Create, Read, Update, Delete \\
+DBMS & Database Management System \\
+JWT & JSON Web Token \\
+KDS & Kitchen Display System \\
+neoRMS & AI-Integrated Restaurant Management System \\
+ORM & Object-Relational Mapping \\
+RBAC & Role-Based Access Control \\
+REST & Representational State Transfer \\
+RUET & Rajshahi University of Engineering \& Technology \\
+Socket.IO & WebSocket communication library \\
+SQL & Structured Query Language \\
+UI/UX & User Interface / User Experience \\
+CI/CD & Continuous Integration / Continuous Deployment \\
+GDPR & General Data Protection Regulation \\
+PCI DSS & Payment Card Industry Data Security Standard \\
+WCAG & Web Content Accessibility Guidelines \\
+3NF & Third Normal Form \\
+\bottomrule
+\end{tabular}
+
+\clearpage
+
+% ===== MAIN MATTER =====
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{chapters/ch1_introduction}
+\input{chapters/ch2_organization}
+\input{chapters/ch3_project}
+\input{chapters/ch4_tools}
+\input{chapters/ch5_societal}
+\input{chapters/ch6_ethics}
+\input{chapters/ch7_skills}
+\input{chapters/ch8_challenges}
+\input{chapters/ch9_contribution}
+\input{chapters/ch10_conclusion}
+
+% ===== REFERENCES =====
+\clearpage
+\begin{thebibliography}{12}
+\addcontentsline{toc}{chapter}{References}
+
+\bibitem{ieee_ethics}
+IEEE, ``IEEE Code of Ethics,'' 2020. [Online]. Available: \url{https://www.ieee.org/about/corporate/ethics}. [Accessed: March 2026].
+
+\bibitem{clean_code}
+R. Martin, \textit{Clean Code: A Handbook of Agile Software Craftsmanship}, Prentice Hall, 2008.
+
+\bibitem{sommerville}
+I. Sommerville, \textit{Software Engineering}, 10th ed., Pearson, 2015.
+
+\bibitem{pressman}
+R. Pressman, \textit{Software Engineering: A Practitioner's Approach}, 8th ed., McGraw-Hill, 2014.
+
+\bibitem{fowler}
+M. Fowler, \textit{Patterns of Enterprise Application Architecture}, Addison-Wesley, 2002.
+
+\bibitem{newman}
+S. Newman, \textit{Building Microservices}, O'Reilly Media, 2015.
+
+\bibitem{date}
+C. J. Date, \textit{An Introduction to Database Systems}, 8th ed., Addison-Wesley, 2003.
+
+\bibitem{agile}
+Agile Alliance, ``Manifesto for Agile Software Development,'' 2001. [Online]. Available: \url{https://agilemanifesto.org/}. [Accessed: March 2026].
+
+\bibitem{owasp}
+OWASP, ``OWASP Top 10,'' 2022. [Online]. Available: \url{https://owasp.org/www-project-top-ten/}. [Accessed: March 2026].
+
+\bibitem{wcag}
+W3C, ``Web Content Accessibility Guidelines (WCAG) 2.1,'' 2023. [Online]. Available: \url{https://www.w3.org/WAI/WCAG21/quickref/}. [Accessed: March 2026].
+
+\bibitem{socketio}
+Socket.IO, ``Socket.IO Documentation,'' 2025. [Online]. Available: \url{https://socket.io/docs/}. [Accessed: March 2026].
+
+\bibitem{prisma}
+Prisma, ``Prisma ORM Documentation,'' 2025. [Online]. Available: \url{https://www.prisma.io/docs}. [Accessed: March 2026].
+
+\end{thebibliography}
+
+% ===== APPENDICES =====
+\appendix
+\input{appendix/appendix_a_dailylog}
+\input{appendix/appendix_b_code}
+\input{appendix/appendix_c_resources}
+
+\end{document}

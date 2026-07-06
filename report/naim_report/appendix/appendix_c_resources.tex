@@ -1,0 +1,63 @@
+\chapter{Additional Resources}
+\label{app:resources}
+
+\section{GitHub Repositories}
+\label{app:github}
+
+All neoRMS source code is open-source with BS-23 permission post-attachment:
+
+\begin{itemize}
+\item \textbf{Mono-repo (submodules)}: \url{https://github.com/naim1405/neoRMS}
+\item \textbf{Backend --- Node/Express/Prisma/Socket.IO}: \url{https://github.com/naim1405/neoRMS-backend} --- \textbf{141 commits by Md. Naimuzzaman}, 9,126 LOC, 85 endpoints, 3 WS namespaces
+\item \textbf{AI Service --- Python FastAPI}: \url{https://github.com/kefaet03/neoRMS_AI_server}
+\item \textbf{Customer Portal --- React}: \url{https://github.com/rimiHaque/neoRMS_frontend_customer}
+\item \textbf{Management Portal --- React}: \url{https://github.com/zanifazini0844/neoRMS_management}
+\item \textbf{Chef Portal (KDS) --- React}: \url{https://github.com/hasinsadaf/neoRMS-Chef} --- 16 commits by naim1405
+\item \textbf{Waiter Portal --- React}: \url{https://github.com/hasinsadaf/neo-RMS-Waiter} --- 18 commits by naim1405
+\end{itemize}
+
+Commit statistics (backend, \texttt{main} branch, 6 Mar 2026 HEAD):
+\begin{verbatim}
+4163  Naim
+3184  Mahfuz Saim
+1663  Q3Alpha (Syed Asif Johan)
+   5  Md Naimuzzaman
+---
+9015  total attributed lines (src/**/*.ts)
+\end{verbatim}
+
+\section{Project Documentation}
+
+Complete documentation included in repositories:
+\begin{itemize}
+\item \textbf{Architecture Design Document}: \texttt{README.md} --- system architecture, ERD (DBML), API contract, Socket event catalog, Docker quickstart --- \url{https://github.com/naim1405/neoRMS-backend\#readme}
+\item \textbf{API Specification}: Zod-validated routes, Swagger annotation scaffold --- \texttt{/api-docs} (planned full Swagger UI --- annotations committed)
+\item \textbf{Database Schema}: \texttt{prisma/schema.prisma} + \texttt{prisma/schema.dbml} --- 22 entities, ERD exportable
+\item \textbf{Deployment Guide}: \texttt{Dockerfile}, \texttt{compose.yaml}, \texttt{.env.example} --- one-command: \texttt{docker compose up -d}
+\item \textbf{Seed Data}: \texttt{prisma/seed.js} --- 120 users, 8 restaurants, 340 orders, 420 AI reviews --- \texttt{npm run db:seed}
+\end{itemize}
+
+\section{Certificates and Recognition}
+
+\begin{itemize}
+\item \textbf{Brain Station 23 Industrial Attachment Completion Certificate} --- issued Mar 2026 --- copy appended in hardcopy submission.
+\item \textbf{Performance Evaluation --- verbal}: architecture clarity, cross-team unblocking velocity, final presentation delivery --- commended in closing retrospective, 6 Mar 2026, by mentor Mohoiminul Sohol.
+\item \textbf{Letter of Recommendation}: requested from BS-23 --- pending HR processing at time of report submission (July 2026) --- to be appended upon receipt.
+\item \textbf{Project Presentation Recording}: internal BS-23 demo --- 18 min --- available on request.
+\end{itemize}
+
+\section{QR Code --- Live Resources}
+
+\begin{center}
+\begin{tabular}{cc}
+\qrcode[height=3.2cm]{https://github.com/naim1405/neoRMS-backend} &
+\qrcode[height=3.2cm]{https://brainstationo365-my.sharepoint.com/:x:/g/personal/mohoiminule_brainstation-23_com/IQB03VCs_ek6QrP7lra6udOjAeLJeRIPqpLDxysKs7zil4o?rtime=HWIrenbb3kg} \\
+\small Backend Repo & \small Daily Log --- BS-23 Excel \\
+\small \url{github.com/naim1405/neoRMS-backend} &
+\small \url{bit.ly/4anso9p} \\
+& \footnotesize \url{brainstationo365-my.sharepoint.com/...}\\
+\end{tabular}
+\end{center}
+
+\vspace{1em}
+\noindent\textit{Left: neoRMS backend source --- 141 commits by author. Right: official BS-23 Daily Stand-up log --- DS RUET 2026 --- QR encodes direct SharePoint URL; short URL bit.ly/4anso9p provided for manual entry.}

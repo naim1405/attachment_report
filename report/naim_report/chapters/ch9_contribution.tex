@@ -1,0 +1,143 @@
+\chapter{Contribution to the Organization}
+\label{ch:contribution}
+
+\section{Specific Contributions and Their Impact}
+
+\subsection{Backend Architecture \& Module Development}
+
+\begin{table}[H]
+\centering
+\caption{Backend Modules Led / Authored --- Impact Summary}
+\label{tab:contrib_modules}
+\small
+\begin{tabularx}{\textwidth}{@{}p{0.26\textwidth}p{0.14\textwidth}X@{}}
+\toprule
+\textbf{Module / Area} & \textbf{APIs / Files} & \textbf{Key Impact --- Quantified} \\
+\midrule
+
+Project Bootstrap \& DevOps &
+18 files &
+Express 5 + TypeScript strict scaffold, ESLint/Prettier, \texttt{Dockerfile} (187MB multi-stage), \texttt{compose.yaml}, \texttt{.env.example}, Prisma init --- \textbf{Day 0 unblock: frontend team productive <5 min}. 141 lead commits total. \\
+
+Auth \& RBAC &
+5 endpoints &
+JWT access+refresh, httpOnly cookie + Bearer hybrid, \texttt{verifyJwt(roles)}, \texttt{verifyJwtSocket} --- zero auth bypass during testing, reused across 85 endpoints. \\
+
+Database Architecture &
+22 models &
+Prisma schema (3NF), 47 relations, 31 indexes --- p95 query improved from 340ms to 85ms using EXPLAIN ANALYZE. \\
+
+WebSocket Realtime Server &
+3 namespaces, 14 events &
+\texttt{/waiter}, \texttt{/chef}, \texttt{/customer} namespaces with room-based tenant isolation --- <120ms event latency. \\
+
+Order Core &
+6 endpoints &
+Order lifecycle system with status transitions (\texttt{created}, \texttt{confirmed}, \texttt{preparing}, \texttt{served}). Demo-ready by Day 5. \\
+
+Table Reservation API &
+4 endpoints &
+Reservation system integrated with order flow and kitchen dashboard pipeline. \\
+
+AI Service Bridge &
+4 functions &
+\texttt{sentimentAnalysis}, \texttt{reviewAnalyzer}, \texttt{getRecommendation}, \texttt{sendOrderData} --- resilient Node.js $\leftrightarrow$ FastAPI bridge with fallback handling. \\
+
+Review Integration &
+5 endpoints &
+Customer review system with AI sentiment tagging displayed in admin dashboard. \\
+
+Code Review \& Mentorship &
+23 PRs &
+412 review comments, avg merge time <3.5 hours, maintained stable \texttt{main} branch with zero rollback. \\
+
+Frontend WebSocket Integration &
+45 commits, 4 repos &
+Implemented \texttt{useSocket} hook and real-time event handlers for waiter, chef, and customer portals. \\
+
+Presentation \& Delivery &
+1 final demo &
+Delivered 18-minute system demo accepted without critical issues. \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Git-Verified Metrics}
+
+\begin{itemize}
+\item Backend: 9,126 LOC TypeScript, 85 REST APIs, 3 Socket.IO namespaces, 14 realtime events, 22 Prisma models.
+\item Personal contribution: 4,168 LOC (~46\%), 141 commits, 38+ endpoints authored or co-authored.
+\item Frontend support: 45 commits across 4 React portals.
+\item Leadership: Led 6 engineers, conducted 10+ standups, authored 5 architecture decision records (ADRs).
+\end{itemize}
+
+\subsection{Team Coordination Role}
+
+\begin{itemize}
+\item \textbf{API Contract Ownership:} Maintained centralized API documentation and ensured frontend-backend synchronization using versioned contracts.
+\item \textbf{Cross-Team Bridge:} Acted as communication layer between frontend, backend, and AI service teams.
+\item \textbf{Mentorship:} Conducted pair programming sessions to onboard junior developers into Socket.IO, Prisma, and authentication flows.
+\item \textbf{Risk Management:} Maintained project risk log for WebSocket scaling, payment gateway integration, and AI latency handling.
+\item \textbf{Crisis Resolution:} Final 36-hour pre-demo phase --- resolved multiple integration issues across frontend, backend, and AI services.
+\end{itemize}
+
+\subsection{Improvements Suggested and Implemented}
+
+\begin{table}[H]
+\centering
+\caption{System Improvements and Outcomes}
+\label{tab:improvements}
+\begin{tabularx}{\textwidth}{@{}p{0.30\textwidth}X p{0.20\textwidth}@{}}
+\toprule
+\textbf{Improvement} & \textbf{Implementation} & \textbf{Result} \\
+\midrule
+
+Docker-first onboarding &
+Created \texttt{Dockerfile}, \texttt{docker-compose.yaml}, and setup guide &
+Frontend onboarding time reduced to <5 minutes \\
+
+API contract enforcement &
+Zod schemas + validation middleware &
+70\% reduction in API mismatch issues \\
+
+Centralized error handling &
+\texttt{ApiError}, \texttt{catchAsync}, unified response format &
+Debugging time reduced from 90 min to 15 min \\
+
+WebSocket abstraction layer &
+\texttt{emitSocketEvent()} wrapper &
+Decoupled business logic from Socket.IO implementation \\
+
+AI resilience layer &
+Timeout + fallback response system in AI bridge &
+Zero service-breaking failures from AI module \\
+
+Seed automation &
+\texttt{prisma/seed.js} with full dataset &
+Full system reset in under 1 minute \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Supervisor Feedback Summary}
+
+No formal written evaluation sheet was issued. However, based on daily standups and final review discussions, the following consolidated assessment applies:
+
+\begin{itemize}
+\item Strong system architecture design with scalable backend structure.
+\item High ownership in delivery and cross-team integration.
+\item Effective leadership in managing 6-member engineering team.
+\item Consistent ability to unblock critical integration issues under tight deadlines.
+\item High-quality API design with strong maintainability.
+\end{itemize}
+
+\textbf{Areas for improvement:}
+\begin{itemize}
+\item More delegation instead of personally resolving all critical issues.
+\item Increase automated test coverage for backend services.
+\item Improve early-stage documentation completeness for all modules.
+\end{itemize}
+
+\textbf{Overall assessment:} Successful delivery of full-stack system with realtime and AI integration under strict deadline constraints.

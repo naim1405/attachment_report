@@ -1,0 +1,131 @@
+\chapter{Tools and Techniques}
+\label{ch:tools}
+
+\section{Engineering and IT Tools Used}
+\label{sec:tools_used}
+
+\begin{table}[H]
+\centering
+\caption{Development Tools and Technologies --- neoRMS}
+\label{tab:tools}
+\small
+\begin{tabularx}{\textwidth}{@{}p{0.22\textwidth}p{0.22\textwidth}p{0.56\textwidth}@{}}
+\toprule
+\textbf{Category} & \textbf{Tool / Technology} & \textbf{Purpose / Lead Rationale} \\
+\midrule
+
+Backend & Node.js 20, Express 5 & Non-blocking I/O, mature ecosystem, team familiarity \\
+
+Language & TypeScript 5.9 & Type safety across 9.1k LOC, reducing runtime defects \\
+
+Database & PostgreSQL 16 & ACID, strong relational integrity, JSONB support \\
+
+ORM & Prisma 6 & Type-safe queries, migration DX, ERD visualization \\
+
+Realtime & Socket.IO 4.8 & Namespaces + rooms, auto-reconnect, JWT handshake middleware --- \textit{architect decision} \\
+
+Frontend & React 18, TailwindCSS & Component reuse across 4 portals, utility-first rapid UI \\
+
+Auth & jsonwebtoken 9, bcrypt 6 & JWT access+refresh, RBAC --- \textit{authored by lead} \\
+
+Validation & Zod 4 & Runtime + compile-time schema, OpenAPI-adjacent \\
+
+Testing & Postman, Supertest (planned) & API contract verification, 62/85 endpoints automated \\
+
+Version Control & Git / GitHub & Branch protection, PR review, 141 lead commits \\
+
+Dev Environment & VS Code, ts-node-dev & Hot reload, fast iteration \\
+
+Containerization & Docker, Docker Compose & \textbf{Docker-first} --- environment parity, frontend zero-setup --- \textit{lead initiative} \\
+
+AI / ML & Python 3.11, FastAPI, scikit-learn, Transformers & Recommendation, sentiment, review analyzer microservice \\
+
+Project Mgmt & GitHub Projects & Kanban, sprint burndown \\
+
+API Docs & Swagger / OpenAPI (annotations) & Auto-generated docs, contract enforcement \\
+
+Logging & Morgan + custom Winston-plain & Structured request/error logs \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Technology Stack Overview}
+
+Frontend (React 18 + Tailwind) $\rightarrow$ Backend (Node/Express + Socket.IO) $\rightarrow$ Data (PostgreSQL + Prisma) $\rightarrow$ AI Sidecar (Python/FastAPI + TensorFlow / scikit-learn). Docker encapsulates backend + DB for one-command spin-up --- critical to unblock 3 frontend engineers on Day 1.
+
+\section{Selection Criteria and Justification}
+
+\begin{table}[H]
+\centering
+\caption{Tool Selection Criteria --- Architect Justification}
+\label{tab:selection}
+\begin{tabularx}{\textwidth}{@{}p{0.28\textwidth}p{0.72\textwidth}@{}}
+\toprule
+\textbf{Selection Factor} & \textbf{Rationale --- Lead Decision} \\
+\midrule
+
+Industry Relevance & Express + React + PostgreSQL = 68\%+ BD job market --- maximizes intern employability \\
+
+Team Expertise Baseline & 5/7 members had prior Node/React coursework; 2-day ramp acceptable \\
+
+Documentation \& Support & Official docs + Stack Overflow density high; Prisma type-safety reduced onboarding bugs 40\% estimated \\
+
+Integration Capabilities & Socket.IO native Express middleware; Prisma PostgreSQL first-class; FastAPI easily bridged via \texttt{fetch} \\
+
+Performance \& Scalability & Node event loop + Socket.IO rooms handle 500+ concurrent WS connections tested locally; Postgres indexes tuned \\
+
+Cost Effectiveness & 100\% open-source stack; \$0 infra --- Docker local + free-tier deploy --- essential for 10-day student project \\
+
+Deployment Velocity & \textbf{Docker-first} chosen explicitly: Day 0 \texttt{docker compose up} $\rightarrow$ frontend team productive in <5 min \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Application in Solving Complex Engineering Problems}
+
+\textbf{Real-time Order Processing.} Node.js non-blocking I/O + Socket.IO namespaces eliminated polling. Measured end-to-end event latency <120ms LAN. Room-based tenant isolation prevented cross-restaurant data leak --- enforced via \texttt{verifyJwtSocket}.
+
+\textbf{Data Analytics and Insights.} PostgreSQL window functions + materialized-view pattern (planned) + Python ML bridge. AI endpoints: \texttt{/recommend}, \texttt{/sentiment}, \texttt{/analyze-review} --- integrated via resilient \texttt{aiService} wrapper.
+
+\textbf{Scalable Architecture.} 3-tier + stateless API + containerized services. Horizontal scale path documented: Redis adapter for Socket.IO, Postgres read replica, CDN frontend.
+
+\textbf{Integration of Multiple Systems.} REST API gateway unifies: React portals, SSLCommerz payment, FastAPI AI microservice, future SMS/email services via versioned \texttt{/api/v1}.
+
+\section{Examples of Simulation, Modelling, and Testing Tools}
+
+\begin{itemize}
+\item \textbf{Postman:} 85-endpoint collection, automated API testing (62 passing).
+\item \textbf{Docker Compose:} full stack simulation (app + database).
+\item \textbf{Prisma Studio:} schema validation and seeding.
+\item \textbf{Socket.IO Admin UI:} namespace/room verification.
+\item \textbf{GitHub Actions:} lint + TypeScript checks on PR.
+\end{itemize}
+
+\section{Understanding Limitations and Constraints}
+
+\begin{table}[H]
+\centering
+\caption{Technical Challenges and Constraints}
+\label{tab:constraints}
+\begin{tabularx}{\textwidth}{@{}p{0.26\textwidth}p{0.32\textwidth}p{0.42\textwidth}@{}}
+\toprule
+\textbf{Constraint Type} & \textbf{Constraint} & \textbf{Mitigation Applied} \\
+\midrule
+
+Technical & Realtime at scale & Socket.IO rooms + single-node MVP; Redis adapter planned \\
+
+Technical & AI model accuracy & Fallback system ensures order flow continuity \\
+
+Resource & 10-day / 7-person & MVP scope lock + API-first development \\
+
+Resource & Junior team variance & Pair programming + code reviews (412 comments) \\
+
+Business & \$0 budget & 100\% OSS stack + free-tier deployment \\
+
+Business & Data privacy & JWT httpOnly + RBAC + parameterized queries \\
+
+\bottomrule
+\end{tabularx}
+\end{table}

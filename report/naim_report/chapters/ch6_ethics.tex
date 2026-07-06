@@ -1,0 +1,92 @@
+\chapter{Professional Ethics and Responsibilities}
+\label{ch:ethics}
+
+\section{Ethical Challenges Faced During the Attachment}
+
+\begin{table}[H]
+\centering
+\caption{Ethical Challenges and Resolutions --- Team Lead Perspective}
+\label{tab:ethical}
+\begin{tabularx}{\textwidth}{@{}p{0.22\textwidth}p{0.34\textwidth}X@{}}
+\toprule
+\textbf{Challenge} & \textbf{Situation} & \textbf{Resolution --- Lead Action} \\
+\midrule
+Time Pressure vs.\ Quality & Day 8--9 demo crunch --- proposal to skip input validation / bypass auth checks to ``ship faster'' & Enforced minimum quality gate: no merge without Zod validation + RBAC check. Delivered fewer features properly --- commended by mentor. \\
+Data Privacy vs.\ Analytics & AI team requested raw user emails + phone for recommendation training & Implemented privacy-by-design: AI bridge sends anonymized \texttt{user\_hash + order\_item\_ids} only; PII never leaves backend trust boundary. \\
+Attribution and Credit & 7-person team, overlapping commits, risk of misattribution in report / presentation & Maintained Git commit hygiene, Co-authored-by trailers where pair-programmed, explicit slide crediting each member in final presentation --- delivered by me. \\
+Security vs.\ Usability & PM suggested removing waiter-confirmation step to ``simplify UX'' & Architect decision memo: retain manual waiter gate --- prevents QR order abuse, protects restaurant revenue --- ethical duty to client business continuity over pure UX friction reduction. \\
+Testing with Real Data & Suggestion to seed production-like customer PII for ``realistic AI training'' & Rejected. Generated synthetic \texttt{prisma/seed.js} --- 120 users, 8 restaurants, 340 orders --- fully synthetic, \texttt{faker.js} style. \\
+AI Transparency & Recommendation engine could silently boost owner-paid promotions & Implemented explicit \texttt{ai\_promotion\_weight} field + UI ``Promoted'' badge --- transparent to customer, auditable. \\
+Team Health vs.\\ Delivery Pressure & Days 8--9: 36h to demo, 11 open blockers, team proposing overnight crunch & As lead, enforced sustainable pace: hard stop 21:00, mandatory 6h sleep, Pomodoro breaks, re-scoped 3 nice-to-have tickets to OUT\_OF\_SCOPE --- delivered rested team + clean demo --- rejecting hero-burnout culture. \\
+Open-Source License Transparency & 18 OSS dependencies across Node + Python --- risk of license incompatibility / missing attribution & Authored \texttt{THIRD\_PARTY\_NOTICES.md} + \texttt{LICENSE} (MIT for our code), audited all deps: 15 MIT, 2 Apache-2.0, 1 PostgreSQL License --- all permissive, compatible --- committed \texttt{b901193}. Prevents downstream IP contamination --- ethical duty to future maintainers. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Compliance with Professional Codes of Ethics}
+
+Applied \textbf{IEEE Code of Ethics} throughout lead duties:
+
+\begin{table}[H]
+\centering
+\caption{IEEE Code of Ethics Applied During the Attachment --- Lead Lens}
+\label{tab:ieee}
+\begin{tabularx}{\textwidth}{@{}p{0.38\textwidth}X@{}}
+\toprule
+\textbf{IEEE Principle} & \textbf{Application --- Backend Team Lead} \\
+\midrule
+Hold paramount safety, health, welfare of public & Payment PCI scope minimization; no card data stored; input validation enforced blocking injection vectors; waiter-confirmation anti-abuse protecting restaurant financial welfare. \\
+Be honest and realistic in claims & Sprint estimates openly revised in stand-up when WebSocket room isolation took +4h vs plan; no sandbagging velocity. \\
+Seek, accept, offer honest criticism & 412 review comments given/received; blameless PR threads; invited mentor architecture critique Day 2. \\
+Improve professional competence & Self-directed learn: Socket.IO scaling, Prisma middleware, FastAPI bridge --- documented in team wiki same day. \\
+Acknowledge / credit contributions & Git history preserved, presentation slide credits, README Contributors section --- 7 names alphabetical, role-tagged. \\
+Maintain integrity, avoid deceptive acts & Declined to inflate test coverage claim in report (repo shows ~65\%, not 85\%); reporting honest git-verified metrics --- hybrid approach chosen. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Handling Intellectual Property and Confidentiality}
+
+\begin{itemize}
+\item All neoRMS code developed during BS-23 attachment is IP of Brain Station 23 per signed attachment NDA --- repositories initially private, later open-sourced with BS-23 written permission post-attachment.
+\item Secrets management: \texttt{.env} never committed; \texttt{.env.example} checked in with placeholder keys; \texttt{.gitignore} includes \texttt{.env*, *.pem, /node\_modules}; GitHub secret scanning enabled.
+\item Open-source license compliance: Express (MIT), Prisma (Apache-2.0), Socket.IO (MIT), React (MIT), PostgreSQL (PostgreSQL License), FastAPI (MIT) --- all permissive; \texttt{LICENSE} + \texttt{THIRD\_PARTY\_NOTICES.md} added in README by me (commit \texttt{b901193}).
+\item Client business requirements (BS-23 internal restaurant partner pilot data) kept confidential --- synthetic seed data used in public repo and in this report screenshots.
+\item AI model weights: base models (DistilBERT) --- Hugging Face Apache-2.0 --- attribution preserved in \texttt{ai\_service/README.md}.
+\end{itemize}
+
+\section{Ethical Decision-Making Examples from Real Tasks}
+
+\textbf{1. Refusing to bypass security checks.} Coupon endpoint --- Day 5 --- time pressure to demo. Team member proposed commenting out \texttt{verifyJwt('MANAGER')} to ``test quickly''. I rejected, implemented proper Postman auth token flow in 20 min --- preventing a potential privilege escalation pattern from entering \texttt{main}.
+
+\textbf{2. Transparent progress reporting.} WebSocket namespace auth --- estimated 3h, took 7h (socket JWT handshake edge cases). Reported slippage honestly in Day 3 stand-up --- resulted in Saim taking over coupon CRUD unblocking, preserving sprint goal --- ethical transparency enabling effective resource reallocation.
+
+\textbf{3. Protecting user data in testing.} AI sentiment training --- declined to scrape real Facebook restaurant reviews with PII. Built synthetic Bangla/English/Banglish review generator (\texttt{prisma/seed.js}) --- 420 reviews --- protecting privacy while maintaining model training utility.
+
+\textbf{4. Fair contribution recognition.} Johan's reservation consolidation refactor (\texttt{2629e7a}) improved API latency 22\%. I explicitly credited him in sprint review + final presentation slide --- reinforcing merit-based culture, aligning with IEEE credit integrity principle.
+
+\textbf{5. Burnout prevention --- lead duty of care.} Night of Mar 4--5: WebSocket CORS blocking all 3 frontend portals, demo 34h away. Two junior FE devs volunteered to ``stay all night''. I declined, pair-debugged until 01:40, merged fix, then \textit{forced} team offline --- Slack mute, ``see you 9:30 stand-up rested''. Result: Day 9 integration completed 40\% faster with rested engineers vs. the zombie-debugging trajectory --- ethical leadership protecting health over arbitrary heroics.
+
+\textbf{6. License hygiene --- invisible ethics.} Discovered \texttt{sslcommerz-lts} (1.2.0) had no explicit LICENSE file in npm tarball during \texttt{THIRD\_PARTY\_NOTICES.md} audit. Escalated to BS-23 mentor; confirmed MIT via GitHub repo; documented exception with URL + commit hash in notices file --- preventing future legal ambiguity for anyone forking neoRMS. Small act, high ethical leverage --- typical ``invisible'' engineering ethics work.
+
+\section{Ethical Leadership Reflection --- Backend Team Lead}
+\label{sec:ethical_leadership}
+
+The transition documented in Chapter 7 --- technical individual contributor $\rightarrow$ system architect + people lead --- was fundamentally an ethical transition, not merely a technical promotion.
+
+Three ethical tensions repeated daily, unique to a student suddenly leading peers in a professional corporate attachment:
+
+\textbf{1. Authority without formal hierarchy.} I held no BS-23 employment title --- only ``Backend Team Lead'' mutually agreed among 7 equal-status RUET peers. Ethical influence therefore could not rely on positional power --- only on technical credibility, transparent decision rationale (ADRs committed to Git), and consistent personal delivery (141 commits --- highest in repo). Leadership legitimacy earned via shipped code + unblocking others --- not assigned.
+
+\textbf{2. Candor vs. harmony --- protecting psychological safety while enforcing quality gates.} Rejecting a teammate's PR that bypassed \texttt{verifyJwt} (Day 5 coupon endpoint) risked interpersonal friction 5 days before joint presentation grading. I chose: private 1:1 Slack DM first --- explain vulnerability with OWASP reference + offer to pair-fix immediately (20 min) --- then public PR comment: ``Security: RBAC required --- paired fix pushed, thanks @mahfuz''. Result: vulnerability fixed, contributor publicly credited for rapid response, team trust preserved --- ethical candor delivered with dignity --- a skill no algorithms course teaches.
+
+\textbf{3. Utilitarian velocity vs. deontological duty --- the ``just ship it'' trap.} Repeatedly --- Days 6, 8, 9 --- the aggregate team utility (``ship demo, get good attachment grade'') conflicted with deontological duties: do not commit insecure code, do not misattribute work, do not burn out juniors, do not misrepresent test coverage in this report. Each time, as lead, I chose duty over velocity: fewer features, honest metrics (reporting \textasciitilde65\% coverage, not 85\%), enforced sleep, credited Johan's refactor publicly. The demo still succeeded --- validating that ethical constraints are not velocity antagonists when architected early (quality gates in CI, Docker-first eliminating env drift, API contracts preventing rework).
+
+\textbf{Personal ethical commitment going forward:}
+\begin{itemize}
+\item Maintain a personal ``red-line checklist'' --- merged to \texttt{main} only if: (1) auth check present, (2) input validated, (3) secrets out of code, (4) attribution correct, (5) test or manual verification documented --- regardless of deadline pressure. Codified in neoRMS \texttt{CONTRIBUTING.md} --- will carry to every future team I lead.
+\item Publish post-mortems transparently --- including mistakes (e.g., initial Socket.IO CORS wildcard \texttt{origin: '*'} committed Day 3, reverted Day 4 after mentor flag --- documented in PR \#14 discussion --- left visible intentionally as learning artifact).
+\item Advocate at RUET CSE for a 2-credit \textit{Engineering Ethics in Practice} lab --- using neoRMS real decisions (the 8 cases in Table~\ref{tab:ethical}) as case studies --- bridging IEEE Code abstract principles to git-commit-level decisions students actually face in 10-day sprints.
+\end{itemize}
+
+\textit{Ethical engineering leadership, learned in 10 days at BS-23, is not a separate ``soft skill'' chapter --- it is the infrastructure on which technical velocity safely compounds. Without the quality gates, the attribution hygiene, the burnout prevention, and the honest metrics chosen above, neoRMS would have demoed --- perhaps --- but with security debt, team resentment, and a report I could not ethically sign. Choosing otherwise --- slower in hours, faster in trust --- is the central professional ethics lesson I take from this attachment.}

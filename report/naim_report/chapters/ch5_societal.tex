@@ -1,0 +1,79 @@
+\chapter{Societal, Health, Safety, Legal and Cultural Considerations}
+\label{ch:societal}
+
+\section{Workplace Health and Safety Measures}
+
+BS-23 demonstrated mature occupational health practices: ergonomic adjustable chairs, monitor arms, 20-20-20 eye care posters, blue-light filters enforced via OS policy, common rest lounges, clearly marked evacuation routes, accessible fire extinguishers, and a documented emergency contact tree. As Team Lead I enforced: pomodoro breaks during crunch (Days 8--9), no overnight crunch --- sustainable pace per Agile principle --- and explicit ``stop at 9pm'' team agreement.
+
+\begin{table}[H]
+\centering
+\caption{Workplace Health and Safety Measures Observed at BS-23}
+\label{tab:safety}
+\begin{tabularx}{\textwidth}{@{}p{0.32\textwidth}X@{}}
+\toprule
+\textbf{Safety Measure} & \textbf{Implementation at BS-23 / neoRMS team} \\
+\midrule
+Ergonomic Workstations & Adjustable chairs, proper desk/monitor height --- observed daily \\
+Regular Breaks & Scrum master encouraged 5-min stand/stretch every hour; team adopted Pomodoro on heavy debug days \\
+Eye Care & Blue-light filter + 20-20-20 rule verbal reminders \\
+Emergency Procedures & Evacuation maps / assembly points posted; fire drill briefing Day 1 \\
+Fire Safety & Extinguishers inspected, exits unobstructed --- verified \\
+Mental Health & Open mentorship (Sohol / Safayet), flexible hybrid, blameless retrospectives --- junior mistakes treated as learning, not fault \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Legal Compliance in Engineering Activities}
+
+\textbf{Data Protection and Privacy.} neoRMS processes PII (name, email, phone, order history, payment metadata). Implemented: GDPR-aligned data minimization --- collect only necessary fields; TLS in transit; bcrypt password hashing (cost 12); JWT httpOnly cookies; RBAC strict --- \texttt{verifyJwt(...roles)}; right-to-erasure endpoint \texttt{DELETE /users/me} anonymizes orders; no payment card data stored --- delegated to SSLCommerz PCI-DSS vault.
+
+\textbf{Accessibility Compliance.} Frontend portals target WCAG 2.1 AA: semantic HTML, ARIA labels on order status, 4.5:1 color contrast (Tailwind slate), keyboard-navigable modals, alt-text mandatory in PR checklist.
+
+\textbf{Payment Compliance.} SSLCommerz integration follows PCI DSS SAQ-A (merchant never touches PAN). IPN webhook HMAC verified; idempotency key on \texttt{payment\_id}.
+
+\section{Societal and Cultural Awareness in Solution Design}
+
+\begin{table}[H]
+\centering
+\caption{Societal and Cultural Considerations in neoRMS Design}
+\label{tab:societal}
+\begin{tabularx}{\textwidth}{@{}p{0.30\textwidth}X@{}}
+\toprule
+\textbf{Design Consideration} & \textbf{Implementation --- Lead Decision Rationale} \\
+\midrule
+Multi-language Support & Schema ready for \texttt{bn\_BD} / \texttt{en\_US} i18n keys; menu\_item.translations JSONB reserved \\
+Cultural Dietary Sensitivity & \texttt{tags: [halal, vegetarian, spicy\_level]} filterable; Bangladeshi cuisine category first-class \\
+Accessibility / Inclusive Design & WCAG AA, large touch targets (48px), screen-reader order status announcements \\
+Small Business Scalability & Multi-tenant SaaS --- single \texttildelow{} 5-seat cafe to 50-location chain; free-tier friendly Docker deploy; no per-seat license \\
+Customer Empowerment & QR dine-in self-order reduces waiter dependency; transparent realtime tracking builds trust \\
+Anti-abuse Cultural Gate & Manual waiter confirmation --- specifically designed for BD market where anonymous QR abuse is prevalent --- balances digital convenience with local operational reality \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Environmental Sustainability Considerations}
+
+\begin{table}[H]
+\centering
+\caption{Environmental Sustainability Considerations}
+\label{tab:env}
+\begin{tabularx}{\textwidth}{@{}p{0.30\textwidth}X@{}}
+\toprule
+\textbf{Sustainability Area} & \textbf{Approach Taken} \\
+\midrule
+Code Efficiency & Prisma selective queries, composite indexes, N+1 elimination --- measured 75\% DB CPU reduction post-index \\
+Cloud / Shared Resources & Docker multi-stage build $\rightarrow$ 187MB image (vs 890MB dev); efficient container density \\
+Digital Ordering & Eliminates paper KOT slips --- est. 120--300 slips/day/restaurant saved \\
+Inventory Optimization & Threshold alerts + deduction service $\rightarrow$ 12--18\% projected food waste reduction per BS-23 mentor estimate \\
+Remote Work & Hybrid attachment --- 40\% commute reduction vs full onsite; documented in BS-23 environmental policy \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Case Examples from the Attachment Site}
+
+\textbf{Example 1 --- Inclusive merit-based review.} Junior backend dev (Johan) proposed consolidating reservation update logic into a single service (commit \texttt{2629e7a}). Despite being the most junior BE, PR was approved after architectural review --- demonstrating BS-23 merit culture I reinforced as lead.
+
+\textbf{Example 2 --- Security over speed.} Day 8, under demo pressure, a suggestion to bypass Zod validation on coupon endpoint for ``quick fix'' was declined by me as architect. Proper validation shipped 45 min later --- preventing potential injection --- commended in stand-up retro.
+
+\textbf{Example 3 --- Environmental digital-first.} All SRS, ERD, API contracts, daily logs maintained 100\% digitally (GitHub / Notion). Zero paper printed across 10 days --- consistent with BS-23 sustainability policy, which I enforced via PR template requiring digital documentation link.
