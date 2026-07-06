@@ -1,0 +1,124 @@
+﻿SPRINT PLAN & DAILY SCRUM - Industrial Attachment (RUET),,,,,,,,,,,,,,
+USER NOTE: ENTER MONDAY'S DATE BELOW AND THE WEEK'S DATES WILL AUTO-POPULATE.,,,,,,,,,,,,,,
+Name,ID,Dept,Technology,Sprint Planning,Task,MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,,,,
+,,,,,,3/2/2026,3/3/2026,3/4/2026,3/5/2026,3/6/2026,,,,
+Mahfuz Saim,2103039,CSE,"Express, 
+PostgreSQL, 
+Prisma",,Priorities,"1. Order code review, debug and merge
+2. Table reservation functionality design
+3. Promotions & Discounts design","1. Coupon functionality development
+2. Low Stock Alert","1. Payment Integration (SSLCommerz)
+2. Collaborating with frontend team","1. Order Integration (frontend)
+2. Table reservation (frontend)
+3. Review Integration (fronend)",1. Project Presentation,,,,
+,,,,,Any blockers?,,,,,,,,,
+,,,,,Spent Hours,,,,,4,,,,
+Md. Naimuzzaman,2103044,CSE,"Express, 
+PostgreSQL, 
+Prisma,
+Docker","Inventory Management
+AI Integration",Priorities,,"fix orders
+code review
+integrate coupon","waiter websocket [3h]
+code review [1h]
+inventory management [4h]
+USER REVIEW","AI Integration
+Deployment",,,,,
+,,,,,Any blockers?,None,None,None,,,,,,
+,,,,,Spent Hours,"Code Review [3h]
+schema update [1h]","Order fix [ 3h]
+code review [coupon] [1h]
+update order with coupon [1h]","waiter websocket [2.5h]
+",,,,,,
+Syed Asif Johan,2103033,CSE,"Node, Express,  prisma, posgres, docker",,Priorities,"1. Order management and completion [2h]
+",1. Table Reservation,,"1. Software Quality Testing, Assuring [8h]",,,,,
+,,,,,Any blockers?,,,,,,,,,
+,,,,,Spent Hours,,,,,,,,,
+Kefeat Ullah,2103011,CSE,"Python, Scikit-learn(TF-IDF, LR, RF, GB, ...), HuggingFace Transformer, DistilBERT, TensorFlow, NLTK, Collaborative Filtering",,Priorities,- - -,1.Finalizing Engine Plan[3 hr]   2.Implementing Probabilistic Recommendation Engine[4 hr],1.Documenting the AI modules[1 hr]  2.Building Server combining the AI modules[3 hr]  3.Redesigning the database a bit[1hr],1.Changing Response format of Review summary module[2.5 hr]   2.Finalizing API routes[2hr],,,,,
+,,,,,Any blockers?,,,,,,,,,
+,,,,,Spent Hours,,7 hr,5 hr,,,,,,
+Khurshid Jahan Haque Rimi,2103036,CSE,React js,,Priorities,1.connect backend with order placement 2.payment system UI 3.QR scanner,1.order takeaway connect to backend 2.order history,1.payment 2.coupon ,,,,,,
+,,,,,Any blockers?,,,,,,,,,
+,,,,,Spent Hours,,,,,,,,,
+Md. Hasin Sadaf,2110044,ECE,"React js
+TailwindCSS
+",,Priorities,"1. Order Creation[3H]
+2. Order status change for chef[2H] 
+3. Order status change for waiter[2H]",1. Fixing Ui and Color theme aligned,"1. Chef Order Details
+2. Chef Order Status Update
+3. Real Time DashBoard",1. Testing and Final Updates,1. Project Presentation,,,,
+,,,,,Any blockers?,,,,,,,,,
+,,,,,Spent Hours,,,,,,,,,
+Zanifa Islam,2110008,ECE,"React js
+TailwindCSS
+",,Priorities,"1. Staff Account Management[3]
+2. Restaurant List Management[4]","1. Inventory Management
+2. Menu Management ","Manager/Owner Part:
+Order Page:
+1. Show all the Order
+Dashboard Page: 
+1. Show Total Order
+2. Show Total Revenue
+3. Show Staff Number 
+4.Show Revenue Curve (Analytics
+5.Low Stock Product
+6. Stock Out Product
+Navbar:
+1. Fix Search Bar 
+Footer:
+1.Add Footer Section",1. Testing and Final Update ,Project Presentation ,,,,
+,,,,,Any blockers?,,,,,,,,,
+,,,,,Spent Hours,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,AM4,i) Aspect-based Sentiment Analysis on Reviews and Feedback (Manager),,,,,,,,,
+,,,,,Ii) l,,,,,,,,,

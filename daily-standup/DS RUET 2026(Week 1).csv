@@ -1,0 +1,217 @@
+﻿SPRINT PLAN & DAILY SCRUM - Industrial Attachment (RUET),,,,,,,,,,,,,,
+USER NOTE: ENTER MONDAY'S DATE BELOW AND THE WEEK'S DATES WILL AUTO-POPULATE.,,,,,,,,,,,,,,
+Name,ID,Dept,Technology,Sprint Planning,Task,MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,,,,
+,,,,,,2/23/2026,2/24/2026,2/25/2026,2/26/2026,2/27/2026,,,,
+Mahfuz Saim,2103039,CSE,"Express, 
+PostgreSQL, 
+Prisma","Staff Account Management APIs
+Restaurant CRUD
+Menu CRUD
+Inventory CRUD & Threshold Config
+Analytics Endpoints
+Promotions & Discounts CRUD
+Low-Stock Alert Service",Priorities,"1. Onboarding meeting [1H]
+2. Gihub [2H]
+3. Database [3H] 
+4. SRS [1H]
+5. BRD[1h]
+6. Project Planning [2H]
+7. Scrum[2]","1. Staff Account Management APIs,
+2. Learning Docker,
+3, Learning Prisma , 
+4. Combining backend technologies in full project,
+5. Restaurant CRUD","1. Menu CRUD
+2. Inventory Management
+3. Threshold management","1. Analytics Endpoints [6hr]
+2. Feature Diagram [2hr]","1. Feature Diagram [3hr]
+2. Aligning code with new schema [2hr]
+3. Coupon and discount [3hr]",,,,
+,,,,,Any blockers?,,Project Initialization,,,,,,,
+,,,,,Spent Hours,6,8,5.5,6,,,,,
+Md. Naimuzzaman,2103044,CSE,"Express, 
+PostgreSQL, 
+Prisma,
+Docker","Project Setup
+Docker
+JWT Authentication Endpoints
+RBAC Middleware
+WebSocket Server & Room Management
+Database Diagram",Priorities,"1. Onoboardng
+2. Planning
+3. Databse
+4. Git
+5 SCRUM","1. Project Setup
+2. Docker
+","1. Docker
+2. Auth
+3. Socket Live update","WebSocket [4h]
+Database Diagram[4h]","db schema design [4h]
+fix err due to db redesign [2h]
+code review [2h]",,,,
+,,,,,Any blockers?,None,None,None,None,None,,,,
+,,,,,Spent Hours,5h,"1. Project Setup [2h]
+2. build fix [1.5h]
+3. Docker [2h]
+","1. Docker [.5h[
+2. Auth [1.5h]
+3. Socket [ 2.5h]","webSocket [3.5h]
+Database Diagram[1h]","db schema design [3h]
+tenant verification design [1.5h]",,,,
+Syed Asif Johan,2103033,CSE,"Node, Express,  prisma, posgres, docker","3. Menu Endpoints (Customer API)
+4. Order Status Endpoint (Customer API)",Priorities,"1.  SRS and BRE Document
+2. Git understand and maintain (PDF)
+3. Excel file understand (Scrum and Kanban)
+4. Onboarding meeting 
+5. Database Overview","1. View Docker  
+2. Project Setup
+3. Menu Endpoints (Customer API)
+4. Order Status Endpoint (Customer API)
+","1. Order History Endpoint
+2. Reorder Endpoint","1. Fix all order endpoints [6h] 
+
+  2. Postman Update [2h]","0. Schema Update [2h]
+1. Postman update  [2h]
+2. Table reservation [4h]
+",,,,
+,,,,,Any blockers?,None,,None,,"1.Merge Order endpoints before postman update
+2. Table Reservation Schema",,,,
+,,,,,Spent Hours,7,"1. Meeting [1h] 
+ 2. Docker View [2h] 
+3. Project Setup [1h], 
+4. code overview [1h]",,,,,,,
+Kefeat Ullah,2103011,CSE,"Python, Scikit-learn(TF-IDF, LR, RF, GB, ...), HuggingFace Transformer, DistilBERT, TensorFlow, NLTK, Collaborative Filtering",1.Finalize project scope & AI modules   2.Working Complaint Analyzer Pipeline(multilingual) (v1)   3.Baseline Sentiment Model(English),Priorities,"1.Onboard Meeting [1 hr]
+2.Project Planning Meeting [2 hr]
+ 3.Database [1 hr]
+5.Scrum & Sprint [1 hr]
+6.BSB and SBS [2 hr]","1.Data Collection(Bangla, English, Banglish)[1 hr]   2.Complaint Detection (Pre-filter + LLM)[3 hr]  3.Item & Issue Extraction Logic[1.5 hr]   4.Analyzer Complaint Categorization[1 hr]",1. Data Collection for Review Sentiment/Rating Prediction[2 hr]   2.Data Cleaning and Feature Engineering[2 hr]  2.Evaluating TF-IDF + LR/RF/GB[2 hr],"1.Implementing DistilBERT (transformer)[4 hr]   
+2.Finalizing Sentiment Model[2 hr]   3.R&D about Recommendation Engine{1 hr]",1.Data Collection/Creation for Recommendation Engine  2.R&D Conent Based Filtering   3.Recommendation Pipeline,,,,
+,,,,,Any blockers?,None,Partially,,,,,,,
+,,,,,Spent Hours,7,7,6,7,7,,,,
+Khurshid Jahan Haque Rimi,2103036,CSE,React js,"customer ui & ux Dine-In Entry and Digital Menu Experience
+
+Cart Management and Order Placement
+
+Payment Processing and Real-Time Order Tracking
+
+Table Reservation, Pre-Order, and Deposit Flow
+
+Order History, Reordering, and AI Recommendations",Priorities,"1. Onboard Meeting 
+2. Project Planning and Git R&D 
+3. Scrum","1.Project setup 
+2. customer ui and Digital Menu Page 
+3. Routing","1.Digital menu page
+ 2.item customization 
+3. Cart","1.cart [3hr] 
+2.order placement[4hr] 
+3.table reservation [2hr]",1.connet backend to create resturant and menu [5hr] ,,,,
+,,,,,Any blockers?,,,,,,,,,
+,,,,,Spent Hours,,,,,,,,,
+Md. Hasin Sadaf,2110044,ECE,"React js
+TailwindCSS
+","Login Page
+
+Register Page
+
+JWT Token Handling (Frontend)
+
+Private Route Implementation
+
+Role-Based Route Guard
+
+Order Creation Page
+
+Billing & Payment Page
+
+Confirmation Screen
+
+Order Status Update Interface
+
+Order-Ready Notification Badge
+
+Active Orders List Page",Priorities,"1.  SRS and BRE document
+2. Git understand and maintain (PDF)
+3. Excel file understand (Scrum )
+4. Onboarding meeting 
+5. Database Overview","1. Project Setup
+2. Login Registration
+3. Learning Docker 
+4.Waiter UI design","1.JWT Token Management
+2.Active Orders List
+3.Order Status Update Controls","1.Connect with Backend(Waiter)[6H]
+2. Login+Registration (Backend+Database)[2H]","1.Login + Registration logic correction+Complete Responsiveness in Waiter UI[2H]
+3. Waiter Portal [6H]",,,,
+,,,,,Any blockers?,,,,,,,,,
+,,,,,Spent Hours,,,,,,,,,
+Zanifa Islam,2110008,ECE,"React js
+TailwindCSS
+",,Priorities,"1.  SRS and BRE document
+2. Git understand and maintain (PDF)
+3. Excel file understand (Scrum)
+4. Onboarding meeting 
+5. Database Overview
+","1. Project Setup
+2. Chef UI (KDS) 
+3. Learning Docker","
+1. Manager Page/Owner (Basic Structure) ","1.Docker Setup for backend+ Manager/Owner Dashboard Design +
+Total Order Page design [2.5H]
+2.Analytics Page Design + Staff Page Design[2.5H]
+3.Inventory Page Design+Menu Page Design +resturant List (Owner) Page Design [3H]
+","1. API testing(Owner Creation, Owner login, 
+Restaurant Creation, Inventory Addition)(2)
+2. Registration and Login Part Complete for Owner/Manager(5)
+",,,,
+,,,,,Any blockers?,,,,,,,,,
+,,,,,Spent Hours,,6,6.5,7.5,7,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,AM4,i) Aspect-based Sentiment Analysis on Reviews and Feedback (Manager),,,,,,,,,
+,,,,,Ii) l,,,,,,,,,

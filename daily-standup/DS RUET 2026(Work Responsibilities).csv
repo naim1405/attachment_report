@@ -1,0 +1,59 @@
+﻿Saim,Naim,Johan,Kefaet,Rimi,Sadaf,Zanifa
+User management,Project setup,"Table module backend 
+-CRUD operations.
+-Required endpoints
+- Reservations Handling
+",AM 4 (i) Review and Feedback Summarizer,Explore page -frontend,Management Side Login Page design,"1.Designed and implemented the admin dashboard layout. 
+-Total Revenue
+-Total Order
+-Total Product
+-Total Staff
+-Inventory Alert
+-Revenue Curve "
+Restaurant CRUD,Dockerize,"Order Managemetnt
+backend
+- CRUD operations
+- Required Endpoints","1.Data Collection(Bangla, English, Banglish)[1 hr]   ",resturent dashboard,Waiter Ui Design,"2.Built sidebar navigation and admin navbar components.
+Sidebar:
+-Show all the list of Pages
+Navbar:
+-Name of that restaurant
+-Search bar (Can search staff, menu, inventory items)
+-Notification Icon(Show notification for inventory alert)
+-Profile Icon (Profile details and Logout Option)"
+Menu Items CRUD,Authentication,Zod validation for given modules,2.Complaint Detection (Pre-filter + LLM)[3 hr] ,digital menu -frontend,Waiter Login,3. Login and Registration API connetions and Enhance Design for Admin panel
+Basic Inventory Product Entry,Schema Design,SQA&T,3.Item & Issue Extraction Logic[1.5 hr] ,customization cart,Waiter Side Order Management,"4.Design Restaurant List Page for Every Owner Side. (Create 
+Restaurant Functionality)"
+Inventory Threshold Config,Websocket - Backend,,4.Analyzer Complaint Categorization[1 hr],cart ,Waiter Profile,5.Order Page Design for Management Part (Can see status of Orders)
+Analytics Endpoints,Websocket - Waiter Portal,,AM 4 (ii) Sentiment Analysis,order  summary,Waiter Api Connection,"6.Menu Management page Design(Fully Functional- Create Menu,
+Edit Menu)"
+Coupons CRUD,WebSocket- Chef Portal,,5. Data Collection for Review Sentiment/Rating Prediction[2 hr]   ,qr scanner,Chef Ui Design,"7. Filtering option for Menu management (Based on Categories, 
+Availability, Price, Discount)"
+Payment Gateway Integration (Backend+Frontend),Code Review,,6.Data Cleaning and Feature Engineering[2 hr],,Chef Api Connection,"8. Table Management Page Design (Create Table, Can Soft Delete)
+Show Status of Every Table(Reserved/ Non Reserved)"
+Table Reservation (Frontend),AI Integration,,7.Evaluating TF-IDF + LR/RF/GB[2 hr],,Chef Order Management,"9. Inventory Management Page Design( Show full Overview of
+ Inventory, Inventory List Of Full Items) 
+- Add new inventory items
+-Delete Inventory items
+-Increase existing inventory
+-Subtract Existing Inventory
+-Filtering Inventory (based on available, low stock, out of the stock)
+-Can search by name
+-Show Inventory Alert Option "
+Review integration (Frontend),Waiter Portal Fixes,,8.Implementing DistilBERT (transformer)[4 hr]  ,,Chef Profile ,"10. Staff page Design
+-Show the list of all Staff
+-Can Add staff
+-Manager can't add any manager
+-Filtering option based on manager, waiter,chef"
+Feature Flow Design,Chef Portal Fixes,,9.Finalizing Sentiment Model[2 hr],,,"11. Analytics Page Design 
+-Show total revenue
+-Show the curve(Revenue vs Month)"
+,,,AM 1 Recommendation Engiene,,,"12. Profile Page Design
+-Show details of Users
+-Can update Profile"
+,,,10.R&D about Recommendation Engine{1 hr],,,13.LogOut Option 
+,,,11.Data Collection/Creation for Recommendation Engine ,,,
+,,,12.R&D Conent Based Filtering ,,,
+,,,13.Recommendation Pipeline,,,
+,,,14.Finalizing Engine Plan  ,,,
+,,,15.Implementing Recommendation Engine,,,

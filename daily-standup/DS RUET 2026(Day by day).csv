@@ -1,0 +1,95 @@
+﻿Task ID,Layer,Person,Module,Task,Priority,Complexity,Est. Days,Start Date,End Date,Status
+BE-001,Backend,Md. Naimuzzaman,Auth & Users,JWT Authentication Endpoints,High,M,1,24-Feb-26,24-Feb-26,Done
+BE-002,Backend,Md. Naimuzzaman,Auth & Users,RBAC Middleware,High,M,1,24-Feb-26,25-Feb-26,Done
+BE-005,Backend,Md. Naimuzzaman,Customer APIs,Order Placement Endpoint,High,L,2,25-Feb-26,26-Feb-26,Done
+BE-017,Backend,Md. Naimuzzaman,Order Management,WebSocket Server & Room Management,High,L,2,26-Feb-26,27-Feb-26,Done
+BE-022,Backend,Md. Naimuzzaman,Payment System,Low-Stock Alert Service,High,L,2,2-Mar-26,3-Mar-26,OUT OF SCOPE
+BE-019,Backend,Md. Naimuzzaman,Inventory Management,Ingredient Deduction Service,High,L,2,3-Mar-26,4-Mar-26,OUT OF SCOPE
+BE-027,Backend,Md. Naimuzzaman,Table Reservation,Availability Query Endpoint,High,L,2,4-Mar-26,5-Mar-26,Done
+BE-028,Backend,Md. Naimuzzaman,Table Reservation,Create Reservation Endpoint,High,L,2,4-Mar-26,5-Mar-26,Done
+BE-003,Backend,Mahfuz Saim,Auth & Users,Staff Account Management APIs,High,M,1,24-Feb-26,24-Feb-26,Done
+BE-013,Backend,Mahfuz Saim,Manager APIs,Restaurant & Menu CRUD,High,M,1,24-Feb-26,25-Feb-26,Done
+BE-014,Backend,Mahfuz Saim,Manager APIs,Inventory CRUD & Threshold Config,High,M,1,25-Feb-26,26-Feb-26,Done
+BE-015,Backend,Mahfuz Saim,Manager APIs,Analytics Endpoints,High,L,2,26-Feb-26,27-Feb-26,Done
+BE-016,Backend,Mahfuz Saim,Manager APIs,Promotions & Discounts CRUD,Medium,M,1,27-Feb-26,27-Feb-26,Done
+BE-020,Backend,Mahfuz Saim,Payment System,Payment Gateway Integration,High,M,1,27-Feb-26,2-Mar-26,Done
+BE-021,Backend,Mahfuz Saim,Inventory Management,Daily Stock Report Cron Job,Medium,M,1,2-Mar-26,2-Mar-26,OUT OF SCOPE
+BE-024,Backend,Mahfuz Saim,Payment System,Invoice Generation,High,M,1,2-Mar-26,3-Mar-26,
+BE-025,Backend,Mahfuz Saim,Payment System,Deposit Payment & Balance Tracking,High,L,2,3-Mar-26,4-Mar-26,
+BE-026,Backend,Mahfuz Saim,Payment System,Deposit Refund Logic,High,M,1,4-Mar-26,4-Mar-26,
+BE-035,Backend,Mahfuz Saim,Notifications,Email Notification Service,High,M,1,3-Mar-26,4-Mar-26,
+BE-031,Backend,Mahfuz Saim,Table Reservation,Check-In Endpoint,High,M,1,4-Mar-26,5-Mar-26,
+BE-036,Backend,Mahfuz Saim,Notifications,Push Notification Service,Medium,M,1,4-Mar-26,5-Mar-26,
+BE-004,Backend,Syed Asif Johan,Customer APIs,Menu Endpoints,High,S,0.5,24-Feb-26,24-Feb-26,Done
+BE-006,Backend,Syed Asif Johan,Customer APIs,Order Status Endpoint,High,S,0.5,24-Feb-26,24-Feb-26,Done
+BE-007,Backend,Syed Asif Johan,Customer APIs,Order History Endpoint,Medium,S,0.5,24-Feb-26,24-Feb-26,Done
+BE-008,Backend,Syed Asif Johan,Customer APIs,Reorder Endpoint,Low,S,0.5,25-Feb-26,25-Feb-26,Not Now
+BE-009,Backend,Syed Asif Johan,Waiter APIs,Waiter Order Create,High,S,0.5,25-Feb-26,25-Feb-26,Done
+BE-010,Backend,Syed Asif Johan,Waiter APIs,Order Status Update,High,M,1,25-Feb-26,26-Feb-26,Done
+BE-011,Backend,Syed Asif Johan,Chef APIs,KDS Orders Feed,High,M,1,26-Feb-26,27-Feb-26,Done
+BE-012,Backend,Syed Asif Johan,Chef APIs,Mark Item Unavailable,High,S,0.5,27-Feb-26,27-Feb-26,
+BE-018,Backend,Syed Asif Johan,Order Management,Order Type Handling,High,S,0.5,27-Feb-26,27-Feb-26,Done
+BE-023,Backend,Syed Asif Johan,Payment System,Cash Payment Recording,High,S,0.5,27-Feb-26,27-Feb-26,
+BE-029,Backend,Syed Asif Johan,Table Reservation,Modify Reservation Endpoint,Medium,M,1,2-Mar-26,2-Mar-26,Done
+BE-030,Backend,Syed Asif Johan,Table Reservation,Cancel Reservation Endpoint,High,M,1,2-Mar-26,3-Mar-26,Done
+BE-032,Backend,Syed Asif Johan,Table Reservation,Pre-Order KDS Transmission Job,High,M,1,3-Mar-26,4-Mar-26,Done
+BE-033,Backend,Syed Asif Johan,Table Reservation,Auto-Release No-Show Job,Medium,M,1,4-Mar-26,4-Mar-26,Done
+BE-034,Backend,Syed Asif Johan,Table Reservation,Reservation Rules Config Endpoints,High,S,0.5,4-Mar-26,4-Mar-26,Done
+BE-037,Backend,Syed Asif Johan,Notifications,24-Hour Reservation Reminder Cron,Medium,S,0.5,5-Mar-26,5-Mar-26,
+FE-001,Frontend,Md. Hasin Sadaf,Auth & Routing,Login & Register Pages,High,S,0.5,24-Feb-26,24-Feb-26,Done
+FE-002,Frontend,Md. Hasin Sadaf,Auth & Routing,Role-Based Route Guards,High,S,0.5,24-Feb-26,24-Feb-26,Done
+FE-003,Frontend,Md. Hasin Sadaf,Auth & Routing,JWT Token Management,High,M,1,24-Feb-26,25-Feb-26,DOne
+FE-007,Frontend,Khurshid Jahan Haque Rimi,Customer UI,QR Code Scanner for Dine-In,High,M,1,25-Feb-26,26-Feb-26,
+FE-008,Frontend,Khurshid Jahan Haque Rimi,Customer UI,Order Placement Flow,High,L,2,26-Feb-26,27-Feb-26,
+FE-010,Frontend,Khurshid Jahan Haque Rimi,Customer UI,Payment Page,High,L,2,27-Feb-26,2-Mar-26,
+FE-013,Frontend,Khurshid Jahan Haque Rimi,Customer UI,Table Reservation Page,High,L,2,2-Mar-26,3-Mar-26,
+FE-014,Frontend,Khurshid Jahan Haque Rimi,Customer UI,Pre-Order Attachment in Reservation Flow,High,L,2,3-Mar-26,4-Mar-26,
+FE-015,Frontend,Khurshid Jahan Haque Rimi,Customer UI,Deposit Payment Step,High,M,1,4-Mar-26,5-Mar-26,
+FE-016,Frontend,Khurshid Jahan Haque Rimi,Customer UI,Reservation Management Page,High,M,1,5-Mar-26,5-Mar-26,
+FE-004,Frontend,Khurshid Jahan Haque Rimi,Customer UI,Digital Menu Page,High,M,1,24-Feb-26,25-Feb-26,Done
+FE-005,Frontend,Khurshid Jahan Haque Rimi,Customer UI,Item Detail & Customisation Modal,High,M,1,25-Feb-26,26-Feb-26,Done
+FE-009,Frontend,Khurshid Jahan Haque Rimi,Customer UI,Real-Time Order Tracking Page,High,M,1,26-Feb-26,27-Feb-26,
+FE-012,Frontend,Khurshid Jahan Haque Rimi,Customer UI,AI Recommendation Widget,High,M,1,27-Feb-26,2-Mar-26,
+FE-023,Frontend,Zanifa Islam,Chef UI (KDS),Real-Time Orders Board,High,L,2,26-Feb-26,27-Feb-26,
+FE-024,Frontend,Zanifa Islam,Chef UI (KDS),Order Card Detail View,High,S,0.5,27-Feb-26,27-Feb-26,Done
+FE-025,Frontend,Zanifa Islam,Chef UI (KDS),Cooking Status Update Controls,High,S,0.5,2-Mar-26,2-Mar-26,DOne
+FE-028,Frontend,Zanifa Islam,Manager Admin Panel,Main Dashboard,High,L,2,2-Mar-26,3-Mar-26,Done
+FE-031,Frontend,Zanifa Islam,Manager Admin Panel,Analytics & Reports,High,L,2,3-Mar-26,4-Mar-26,Done
+FE-034,Frontend,Zanifa Islam,Manager Admin Panel,Reservation Dashboard,High,M,1,4-Mar-26,5-Mar-26,Done
+FE-035,Frontend,Zanifa Islam,Manager Admin Panel,Reservation Rules Configuration Panel,High,M,1,4-Mar-26,5-Mar-26,Done
+FE-038,Frontend,Md. Hasin Sadaf,Shared Infrastructure,Responsive Layout & Theme,High,M,1,24-Feb-26,25-Feb-26,Done
+FE-036,Frontend,Md. Hasin Sadaf,Shared Infrastructure,WebSocket Client Setup,High,M,1,25-Feb-26,26-Feb-26,
+FE-006,Frontend,Khurshid Jahan Haque Rimi,Customer UI,Cart Component,High,M,1,24-Feb-26,25-Feb-26,Done
+FE-017,Frontend,Khurshid Jahan Haque Rimi,Customer UI,In-App Notification Display,Medium,M,1,24-Feb-26,25-Feb-26,
+FE-011,Frontend,Khurshid Jahan Haque Rimi,Customer UI,Order History & Reorder,Medium,M,1,25-Feb-26,26-Feb-26,
+FE-018,Frontend,Md. Hasin Sadaf,Waiter UI,Order Creation Form,High,M,1,25-Feb-26,26-Feb-26,Done
+FE-039,Frontend,Md. Hasin Sadaf,Shared Infrastructure,Form Validation Library,Medium,S,0.5,26-Feb-26,26-Feb-26,
+FE-040,Frontend,Md. Hasin Sadaf,Shared Infrastructure,Loading States & Error Boundaries,Medium,S,0.5,26-Feb-26,26-Feb-26,
+FE-019,Frontend,Md. Hasin Sadaf,Waiter UI,Active Orders List,High,M,1,26-Feb-26,27-Feb-26,Done
+FE-020,Frontend,Md. Hasin Sadaf,Waiter UI,Order-Ready Notification Badge,High,S,0.5,27-Feb-26,27-Feb-26,Done
+FE-021,Frontend,Md. Hasin Sadaf,Waiter UI,Order Status Update Controls,High,S,0.5,27-Feb-26,27-Feb-26,Done
+FE-022,Frontend,Md. Hasin Sadaf,Waiter UI,Billing & Payment Confirmation Screen,High,M,1,27-Feb-26,2-Mar-26,in progress
+FE-026,Frontend,Zanifa Islam,Chef UI (KDS),Mark Item Unavailable,High,S,0.5,2-Mar-26,2-Mar-26,
+FE-027,Frontend,Zanifa Islam,Chef UI (KDS),Order Priority Indicator,Medium,S,0.5,2-Mar-26,2-Mar-26,
+FE-037,Frontend,Md. Hasin Sadaf,Shared Infrastructure,Global Toast & Notification System,Medium,S,0.5,2-Mar-26,2-Mar-26,
+FE-029,Frontend,Zanifa Islam,Manager Admin Panel,Menu Management CRUD,High,M,1,2-Mar-26,3-Mar-26,Done
+FE-030,Frontend,Zanifa Islam,Manager Admin Panel,Inventory Management Interface,High,M,1,3-Mar-26,4-Mar-26,Done
+FE-032,Frontend,Zanifa Islam,Manager Admin Panel,Staff Account Management,High,M,1,4-Mar-26,4-Mar-26,Done
+FE-033,Frontend,Zanifa Islam,Manager Admin Panel,Discounts & Promotions Management,Medium,M,1,4-Mar-26,5-Mar-26,Done
+AI-001,AI,Kefaet Ullah,Data Pipeline,Feedback & Review Data Collection,High,L,0.2,24-Feb-26,25-Feb-26,Done
+AI-002,AI,Kefaet Ullah,NLP Analyzer,Complaint Detection Pipeline (Pre-filter + LLM),High,L,0.3,24-Feb-26,25-Feb-26,Done
+AI-003,AI,Kefeat Ullah,NLP Analyzer,Food Item & Issue Extraction Logic,High,M,0.2,24-Feb-26,25-Feb-26,Done
+AI-004,AI,Kefaet Ullah,NLP Analyzer,Analyzer Complaint Categorization,High,M,0.3,24-Feb-26,25-Feb-26,Done
+AI-005,AI,Kefaet Ullah,Rating Prediction,TF-IDF + Logistic Regression Baseline Model High,High,L,0.5,25-Feb-26,26-Feb-26,Done
+AI-006,AI,Kefaet Ullah,Model Management,Initial Model Training Script,High,M,0.3,26-Feb-26,27-Feb-26,Done
+AI-007,AI,Kefaet Ullah,Rating Prediction,Transformers,High,XL,0.5,25-Feb-26,26-Feb-26,Done
+AI-004,AI,Kefaet Ullah,Recommendation Engine,Frequent Itemset Mining (FBT),High,L,2,27-Feb-26,2-Mar-26,
+AI-006,AI,Kefaet Ullah,Recommendation Engine,Trending Items Computation,High,M,1,27-Feb-26,2-Mar-26,
+AI-005,AI,Kefaet Ullah,Recommendation Engine,Collaborative Filtering Model,High,XL,3,2-Mar-26,4-Mar-26,
+AI-007,AI,Kefaet Ullah,Recommendation Engine,Personalised Offers for Returning Customers,Medium,L,2,3-Mar-26,4-Mar-26,
+AI-009,AI,Kefaet Ullah,API Layer,Trending Items Endpoint,High,S,0.5,4-Mar-26,4-Mar-26,
+AI-008,AI,Kefaet Ullah,API Layer,Recommendations Endpoint,High,M,1,4-Mar-26,5-Mar-26,
+AI-013,AI,Kefaet Ullah,Model Management,Recommendation Quality Logging,Medium,M,1,4-Mar-26,5-Mar-26,
+AI-011,AI,Kefaet Ullah,Model Management,Scheduled Model Retraining,Medium,M,1,5-Mar-26,5-Mar-26,
+AI-012,AI,Kefaet Ullah,Model Management,Model Versioning & Rollback,Medium,M,1,5-Mar-26,5-Mar-26,
+AI-014,,,,,,,,,,
