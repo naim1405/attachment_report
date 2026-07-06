@@ -1,0 +1,12 @@
+*.aux
+*.lof
+*.log
+*.pdf
+*.toc
+*.fdb_latexmk
+*.fls
+*.lot
+*.out
+
+
+# rm *.aux  *.lof *.log *.pdf *.toc *.fdb_latexmk *.fls *.lot *.out
