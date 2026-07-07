@@ -107,7 +107,8 @@ Data collection for this report included: direct participation logs, Git commit 
 
 \begin{figure}[H]
 \centering
-\begin{tikzpicture}[node distance=1.8cm, every node/.style={draw,rounded corners,align=center,minimum width=2.4cm,minimum height=0.9cm,fill=blue!5}]
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[node distance=1.1cm, every node/.style={draw,rounded corners,align=center,minimum width=2.4cm,minimum height=0.9cm,fill=blue!5}]
 \node (r) {Requirements\\Collection};
 \node[right=of r] (d) {Design\\Phase};
 \node[right=of d] (i) {Implementation};
@@ -117,8 +118,9 @@ Data collection for this report included: direct participation logs, Git commit 
 \draw[->,thick] (d) -- (i);
 \draw[->,thick] (i) -- (t);
 \draw[->,thick] (t) -- (doc);
-\draw[->,thick,dashed] (doc) to[bend left=20] node[above,draw=none,fill=none]{iterative} (r);
-\end{tikzpicture}
+\draw[->,thick,dashed] (doc) to[bend left=25] node[above,draw=none,fill=none]{iterative} (r);
+\end{tikzpicture}%
+}
 \caption{Attachment Methodology --- Development Lifecycle}
 \label{fig:methodology}
 \end{figure}
