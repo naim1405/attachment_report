@@ -36,6 +36,12 @@
 \pgfplotsset{compat=1.18}
 \usepackage{qrcode}
 \usepackage{xltabular}
+\usepackage[most]{tcolorbox}
+
+% ===== Cover page colors =====
+\definecolor{corpblue}{RGB}{31,73,125}
+\definecolor{primary}{RGB}{31,73,125}
+\definecolor{accent}{RGB}{200,120,40}
 
 % ===== Styling =====
 \onehalfspacing
@@ -114,40 +120,107 @@
 
 % Title Page
 \begin{titlepage}
-\centering
-\vspace*{1cm}
-{\Large \university\par}
-{\large \department\par}
-{Rajshahi -- 6204, Bangladesh\par}
-\vspace{1.5cm}
-{\Large\bfseries \reporttitle\par}
-\vspace{0.8cm}
-{\large Organization: \orgname\par}
-{\large Attachment Period: \attachmentperiod\par}
-{\large Duration: \attachmentduration\par}
-\vspace{1.5cm}
-\begin{minipage}{0.45\textwidth}
-\raggedright
-\textbf{Submitted By:}\\
-\studentname\\
-Roll No.: \studentroll\\
-Section: \studentsection\\
-Series: \studentseries\\
-Role During Attachment:\\
-\studentrole
-\end{minipage}
-\hfill
-\begin{minipage}{0.45\textwidth}
-\raggedleft
-\textbf{Submitted To:}\\
-\supervisorname\\
-\supervisortitle\\
-\department\\
-\university
-\end{minipage}
+\newgeometry{top=0.4in,bottom=0.4in,left=0.75in,right=0.75in}
+\thispagestyle{empty}
+% Background decorations
+\begin{tikzpicture}[remember picture, overlay]
+\fill[white] (current page.south west) rectangle (current page.north east);
+% Bottom band
+\fill[corpblue!10] (current page.south west) rectangle ([yshift=5.8cm]current page.south east);
+% Top-right circle accent
+\fill[primary!6] ([xshift=-1.5cm,yshift=-0.8cm]current page.north east) circle (1.8cm);
+% Bottom-left circle accent
+\fill[accent!7] ([xshift=1.3cm,yshift=0.9cm]current page.south west) circle (2.1cm);
+% Bottom rule stripe
+\fill[corpblue!35] (current page.south west) rectangle ([yshift=0.30cm]current page.south east);
+% Top rule stripe
+\fill[corpblue!35] ([yshift=-0.30cm]current page.north west) rectangle (current page.north east);
+\end{tikzpicture}
 
-\vfill
-{\large Date of Submission: \submissiondate\par}
+\centering
+\vspace*{0.10cm}
+
+% ------------------------------------------------------------------
+% University logo + name block
+% ------------------------------------------------------------------
+\begin{tcolorbox}[
+  enhanced, width=0.96\textwidth, colback=white, colframe=corpblue!55,
+  boxrule=1pt, arc=3mm, left=8pt, right=8pt, top=8pt, bottom=8pt
+]
+\centering
+% Logo on the left, text on the right
+\begin{minipage}[c]{0.18\textwidth}
+\centering
+% Place your logo file (logo.png) in the same folder as this .tex file.
+% If the file is missing, a placeholder frame is shown instead.
+\IfFileExists{logo.png}{%
+  \includegraphics[width=2.4cm]{logo.png}%
+}{%
+  \fbox{\parbox[c][2.4cm][c]{2.4cm}{\centering\tiny University\\Logo}}%
+}
+\end{minipage}%
+\hfill
+\begin{minipage}[c]{0.78\textwidth}
+\raggedright
+{\fontsize{13}{15}\selectfont\bfseries\textcolor{corpblue}{%
+Rajshahi University of Engineering \& Technology}}\\[0.20cm]
+{\normalsize\textcolor{darkgray}{%
+Department of Computer Science \& Engineering}}\\[0.08cm]
+{\small\textcolor{darkgray!70}{Rajshahi -- 6204, Bangladesh}}
+\end{minipage}
+\end{tcolorbox}
+
+\vspace{0.60cm}
+\vspace{0.40cm}
+
+{\fontsize{18}{21}\selectfont\bfseries\textcolor{corpblue}{INDUSTRIAL ATTACHMENT REPORT}}\\[0.18cm]
+
+\vspace{0.60cm}
+\vspace{0.40cm}
+
+% Organization box
+\begin{tcolorbox}[
+  enhanced, width=0.72\textwidth, colback=corpblue!5, colframe=corpblue!55,
+  boxrule=0.9pt, arc=3mm, left=8pt, right=8pt, top=6pt, bottom=6pt
+]
+\centering
+{\small \textbf{Organization:} Brain Station 23}\\[0.06cm]
+{\small \textbf{Attachment Period:} 23 February - 6 March 2026}\\[0.06cm]
+{\small \textbf{Duration:} 10 Working Days}
+\end{tcolorbox}
+
+\vspace{0.45cm}
+
+% Submitted by / Submitted to box
+\begin{tcolorbox}[
+  enhanced, width=0.94\textwidth, colback=white!94, colframe=corpblue!55,
+  boxrule=1pt, arc=5mm, left=12pt, right=12pt, top=11pt, bottom=11pt,
+  drop shadow=black!12
+]
+\small
+\renewcommand{\arraystretch}{1.22}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X !{\color{corpblue!65}\vrule width 1.1pt} >{\raggedright\arraybackslash}X@{}}
+{\large\bfseries\textcolor{corpblue}{Submitted By:}} & {\large\bfseries\textcolor{corpblue}{Submitted To:}} \\[0.15cm]
+\textbf{Md.\ Naimuzzaman} & \textbf{Md.\ Mazharul Islam} \\
+Roll No.: \textbf{2103044} & Lecturer \\
+Section: \textbf{A} \quad Series: \textbf{21} & Department of Computer Science \& Engineering \\
+Role During Attachment: Backend Team Lead \& Project Architect & Rajshahi University of Engineering \& Technology \\[0.15cm]
+\end{tabularx}
+\end{tcolorbox}
+
+\vspace{0.50cm}
+
+% Date of submission
+\begin{tcolorbox}[
+  enhanced, width=0.55\textwidth, colback=corpblue!5, colframe=corpblue!40,
+  boxrule=0.8pt, arc=2mm, left=8pt, right=8pt, top=5pt, bottom=5pt
+]
+\centering
+{\small\textbf{Date of Submission:} July 07, 2026}
+\end{tcolorbox}
+
+\vspace{0.28cm}
+\restoregeometry
 \end{titlepage}
 
 % Declaration
@@ -188,7 +261,6 @@ I would like to express my sincere gratitude to the following individuals and or
 % Executive Summary
 \chapter*{Executive Summary}
 \addcontentsline{toc}{chapter}{Executive Summary}
-
 This report documents the industrial attachment experience at Brain Station 23 (BS-23), Dhaka, Bangladesh, from 23 February to 6 March 2026. During this 10-day intensive program, I served as \textbf{Backend Team Lead \& Project Architect} in the development of the \textbf{AI-Integrated Restaurant Management System (neoRMS)} --- a comprehensive, multi-tenant restaurant operations platform with real-time order orchestration and integrated AI analytics.
 
 neoRMS provides four integrated portals: a customer-facing digital menu and ordering portal, a waiter confirmation portal, a chef kitchen display system (KDS), and a restaurant owner/manager analytics portal. Each restaurant receives an isolated tenant URL. Real-time WebSocket communication synchronizes order state across customer, waiter, and chef clients, with manual waiter confirmation designed to prevent order misuse.
